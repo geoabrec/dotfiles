@@ -1,9 +1,3 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
-
--- Iterate over all Lua files in the plugins directory and load them
 local plugins_dir = vim.fs.joinpath(vim.fn.stdpath 'config', 'lua', 'custom', 'plugins')
 for file_name, type in vim.fs.dir(plugins_dir, { follow = true }) do
   if (type == 'file' or type == 'link') and file_name:match '%.lua$' and file_name ~= 'init.lua' then
@@ -11,3 +5,22 @@ for file_name, type in vim.fs.dir(plugins_dir, { follow = true }) do
     require('custom.plugins.' .. module)
   end
 end
+
+vim.pack.add { { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' } }
+
+vim.pack.add { { src = 'https://github.com/rcarriga/nvim-notify' } }
+
+vim.pack.add { { src = 'https://github.com/folke/noice.nvim' } }
+
+vim.pack.add {
+  'https://github.com/nvim-tree/nvim-web-devicons',
+  'https://github.com/nvim-lualine/lualine.nvim',
+}
+
+vim.pack.add { { src = 'https://github.com/christoomey/vim-tmux-navigator' } }
+
+vim.pack.add { { src = 'https://github.com/ThePrimeagen/vim-be-good' } }
+
+vim.pack.add { { src = 'https://github.com/mbbill/undotree' } }
+
+vim.pack.add { { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' } }
