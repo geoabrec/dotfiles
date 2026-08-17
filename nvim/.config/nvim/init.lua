@@ -770,7 +770,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yank to system clipbo
 -- Catppuccin
 
 vim.opt.termguicolors = true
-vim.cmd.colorscheme 'catppuccin-nvim'
 
 require('catppuccin').setup {
   flavour = 'mocha', -- latte, frappe, macchiato, mocha
@@ -783,6 +782,8 @@ require('catppuccin').setup {
     },
   },
 }
+
+vim.cmd.colorscheme 'catppuccin-nvim'
 
 require('lualine').get_config()
 
