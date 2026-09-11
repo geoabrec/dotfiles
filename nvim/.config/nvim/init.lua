@@ -7,6 +7,8 @@ do
 
   vim.g.have_nerd_font = true
 
+  vim.opt.swapfile = false
+
   vim.o.mouse = 'a'
 
   vim.o.showmode = false
@@ -410,8 +412,8 @@ do
       cpp = { 'clang-format' },
       python = { 'ruff_fix', 'ruff_format' },
       go = { 'dingo' },
-      html = { 'prettier' },
-      css = { 'prettier' },
+      html = { 'oxfmt' },
+      css = { 'oxfmt' },
     },
   }
 

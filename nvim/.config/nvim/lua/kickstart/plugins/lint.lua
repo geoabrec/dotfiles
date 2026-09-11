@@ -7,8 +7,6 @@ lint.linters_by_ft = {
   cpp = { 'cppcheck' },
   python = { 'ruff' },
   go = { 'golangcilint' },
-  html = { 'markuplint' },
-  css = { 'stylelint' },
 }
 
 -- To allow other plugins to add linters to require('lint').linters_by_ft,
