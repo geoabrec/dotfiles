@@ -7,12 +7,13 @@ do
 
   vim.g.have_nerd_font = true
 
-  vim.o.number = true
-  vim.o.relativenumber = true
-
   vim.o.mouse = 'a'
 
   vim.o.showmode = false
+
+  vim.o.expandtab = true
+  vim.o.tabstop = 4
+  vim.o.shiftwidth = 4
 
   vim.o.breakindent = true
 
@@ -31,7 +32,10 @@ do
   vim.o.splitbelow = true
 
   vim.o.list = true
-  vim.opt.listchars = {}
+  vim.opt.listchars = {
+    tab = '▸ ',
+    trail = '·',
+  }
 
   vim.o.inccommand = 'split'
 
@@ -42,17 +46,17 @@ do
   vim.o.confirm = true
 end
 
--- 2. Diagnostics & ESC/JJ Keymaps
+-- 2. Diagnostics & ESC/JK Keymaps
 
 do
   vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-  vim.keymap.set('i', 'jj', '<Esc>')
+  vim.keymap.set('i', 'jk', '<Esc>')
 
   vim.diagnostic.config {
     update_in_insert = false,
     severity_sort = true,
     float = { border = 'rounded', source = 'if_many' },
-    underline = { severity = { min = vim.diagnostic.severity.WARN } },
+    underline = { severity = { min = vim.diagnostic.severity.ERROR } },
 
     virtual_lines = false,
 
@@ -314,8 +318,11 @@ do
   ---@type table<string, vim.lsp.Config>
   local servers = {
     clangd = {},
+    html = {},
+    cssls = {},
     basedpyright = {},
     stylua = {},
+    gopls = {},
     lua_ls = {
       on_init = function(client)
         client.server_capabilities.documentFormattingProvider = false
@@ -341,6 +348,9 @@ do
       settings = {
         Lua = {
           format = { enable = false },
+          diagnostics = {
+            disable = { 'spell-check' },
+          },
         },
       },
     },
@@ -356,7 +366,7 @@ do
   require('mason').setup {}
 
   require('mason-lspconfig').setup {
-    automatic_enable = true,
+    automatic_enable = false,
   }
 
   local ensure_installed = vim.tbl_keys(servers or {})
@@ -381,6 +391,10 @@ do
         lua = true,
         python = true,
         c = true,
+        cpp = true,
+        go = true,
+        html = true,
+        css = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
@@ -394,8 +408,10 @@ do
     formatters_by_ft = {
       c = { 'clang-format' },
       cpp = { 'clang-format' },
-      r = { 'styler' },
-      python = { 'isort', 'black' },
+      python = { 'ruff_fix', 'ruff_format' },
+      go = { 'dingo' },
+      html = { 'prettier' },
+      css = { 'prettier' },
     },
   }
 
@@ -417,6 +433,7 @@ do
 
     appearance = {
       nerd_font_variant = 'mono',
+      use_nvim_cmp_as_default = true,
     },
 
     completion = {
@@ -483,7 +500,6 @@ end
 
 do
   require 'kickstart.plugins.debug'
-  require 'kickstart.plugins.indent_line'
   require 'kickstart.plugins.lint'
   require 'kickstart.plugins.autopairs'
   require 'kickstart.plugins.neo-tree'
@@ -505,25 +521,39 @@ function YankVisualToClipboard() vim.cmd [[normal! "+y]] end
 
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 
--- Catppuccin
+-- Afterglow
 
 vim.opt.termguicolors = true
 
-require('catppuccin').setup {
-  flavour = 'mocha', -- latte, frappe, macchiato, mocha
-  transparent_background = true, -- Disables setting the background color entirely
-  term_colors = true,
-  integrations = {
-    treesitter = true,
-    native_lsp = {
-      enabled = true,
-    },
-  },
-}
+local function make_transparent()
+  local groups = {
+    'Normal',
+    'NormalNC',
+    'NormalFloat',
+    'SignColumn',
+    'StatusLine',
+    'StatusLineNC',
+    'EndOfBuffer',
+  }
+  for _, g in ipairs(groups) do
+    vim.api.nvim_set_hl(0, g, { bg = 'NONE', ctermbg = 'NONE' })
+  end
+end
 
-vim.cmd.colorscheme 'catppuccin-nvim'
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = 'afterglow',
+  callback = make_transparent,
+})
 
-require('lualine').get_config()
+vim.cmd.colorscheme 'afterglow'
+
+local hl = function(group, attrs) vim.api.nvim_set_hl(0, group, attrs) end
+
+hl('BlinkCmpMenu', { bg = '#252525', fg = '#e87d3e' })
+hl('BlinkCmpMenuBorder', { bg = '#252525', fg = '#e87d3e' })
+hl('BlinkCmpMenuSelection', { bg = '#252525', fg = '#d6d6d6' })
+hl('BlinkCmpDoc', { bg = '#252525', fg = '#e87d3e' })
+hl('BlinkCmpDocBorder', { bg = '#252525', fg = '#e87d3e' })
 
 require('notify').setup {
   background_colour = '#000000',
@@ -572,7 +602,38 @@ require('lualine').get_config()
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'auto',
+    theme = {
+      normal = {
+        a = { bg = '#1a1a1a', fg = '#e87d3e' },
+        b = { bg = '#2a2a2a', fg = '#e87d3e' },
+        c = { bg = '#3a3a3a', fg = '#d6d6d6' },
+      },
+      insert = {
+        a = { bg = '#1a1a1a', fg = '#e5b567' },
+        b = { bg = '#2a2a2a', fg = '#e87d3e' },
+        c = { bg = '#3a3a3a', fg = '#d6d6d6' },
+      },
+      visual = {
+        a = { bg = '#1a1a1a', fg = '#6c99bb' },
+        b = { bg = '#2a2a2a', fg = '#e87d3e' },
+        c = { bg = '#3a3a3a', fg = '#d6d6d6' },
+      },
+      command = {
+        a = { bg = '#1a1a1a', fg = '#b05279' },
+        b = { bg = '#2a2a2a', fg = '#e87d3e' },
+        c = { bg = '#3a3a3a', fg = '#d6d6d6' },
+      },
+      replace = {
+        a = { bg = '#1a1a1a', fg = '#9e86c8' },
+        b = { bg = '#2a2a2a', fg = '#e87d3e' },
+        c = { bg = '#3a3a3a', fg = '#d6d6d6' },
+      },
+      terminal = {
+        a = { bg = '#1a1a1a', fg = '#6c99bb' },
+        b = { bg = '#2a2a2a', fg = '#e87d3e' },
+        c = { bg = '#3a3a3a', fg = '#d6d6d6' },
+      },
+    },
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
@@ -613,8 +674,6 @@ require('lualine').setup {
 }
 
 vim.keymap.set('n', '<leader>o', vim.cmd.UndotreeToggle, { desc = 'Open UndoTree' })
-
-vim.keymap.set('n', '<leader>f', function() require('conform').format { async = true, lsp_format = 'fallback' } end, { desc = 'Format current buffer' })
 
 -- Hapoon
 
@@ -657,3 +716,12 @@ local function toggle_telescope(harpoon_files)
 end
 
 vim.keymap.set('n', '<C-e>', function() toggle_telescope(harpoon:list()) end)
+
+require('qf-formatter').setup {
+  filename_width = 32,
+}
+
+vim.api.nvim_set_hl(0, 'QfFormatterFilename', { fg = '#e87d3e' })
+
+vim.api.nvim_set_hl(0, 'QfFormatterSeparator', { fg = '#d6d6d6' })
+vim.api.nvim_set_hl(0, 'QfFormatterLineNr', { fg = '#d6d6d6' })

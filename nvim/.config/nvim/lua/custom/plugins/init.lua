@@ -6,9 +6,11 @@ for file_name, type in vim.fs.dir(plugins_dir, { follow = true }) do
   end
 end
 
-vim.pack.add { { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' } }
+vim.pack.add { { src = 'https://github.com/danilo-augusto/vim-afterglow' } }
 
 vim.pack.add { { src = 'https://github.com/rcarriga/nvim-notify' } }
+
+vim.pack.add { { src = 'https://github.com/wassimk/qf-formatter.nvim' } }
 
 vim.pack.add { { src = 'https://github.com/folke/noice.nvim' } }
 
