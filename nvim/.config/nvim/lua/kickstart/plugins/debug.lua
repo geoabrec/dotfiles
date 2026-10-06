@@ -23,11 +23,7 @@ require('mason-nvim-dap').setup {
 
   handlers = {},
 
-  ensure_installed = {
-    'debugpy',
-    'codelldb',
-    'delve',
-  },
+  ensure_installed = {},
 }
 
 ---@diagnostic disable-next-line: missing-fields
@@ -64,8 +60,8 @@ dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 dap.listeners.before.event_terminated['dapui_config'] = dapui.close
 dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-require('dap-go').setup {
-  delve = {
-    detached = vim.fn.has 'win32' == 0,
-  },
-}
+-- require('dap-go').setup {
+--   delve = {
+--     detached = vim.fn.has 'win32' == 0,
+--   },
+-- }

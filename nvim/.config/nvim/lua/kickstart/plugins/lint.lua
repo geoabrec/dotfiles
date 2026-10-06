@@ -4,7 +4,6 @@ local lint = require 'lint'
 lint.linters_by_ft = {
   markdown = { 'markdownlint' },
   c = { 'cppcheck' },
-  cpp = { 'cppcheck' },
   python = { 'ruff' },
   go = { 'golangcilint' },
 }

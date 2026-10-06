@@ -14,8 +14,8 @@ do
   vim.o.showmode = false
 
   vim.o.expandtab = true
-  vim.o.tabstop = 4
-  vim.o.shiftwidth = 4
+  vim.o.tabstop = 2
+  vim.o.shiftwidth = 2
 
   vim.o.breakindent = true
 
@@ -410,7 +410,7 @@ do
     formatters_by_ft = {
       c = { 'clang-format' },
       cpp = { 'clang-format' },
-      python = { 'ruff_fix', 'ruff_format' },
+      python = { 'ruff_fix', 'ruff_organize_imports', 'ruff_format' },
       go = { 'dingo' },
       html = { 'oxfmt' },
       css = { 'oxfmt' },
@@ -460,7 +460,7 @@ do
   vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
 
   -- Ensure basic parsers are installed
-  local parsers = { 'bash', 'c', 'diff', 'python', 'cpp', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+  local parsers = { 'bash', 'c', 'diff', 'python', 'cpp', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'go' }
   require('nvim-treesitter').install(parsers)
 
   ---@param buf integer
@@ -503,7 +503,6 @@ end
 do
   require 'kickstart.plugins.debug'
   require 'kickstart.plugins.lint'
-  require 'kickstart.plugins.autopairs'
   require 'kickstart.plugins.neo-tree'
   require 'kickstart.plugins.gitsigns'
 
