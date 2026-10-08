@@ -24,3 +24,5 @@ vim.pack.add { { src = 'https://github.com/christoomey/vim-tmux-navigator' } }
 vim.pack.add { { src = 'https://github.com/mbbill/undotree' } }
 
 vim.pack.add { { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' } }
+
+vim.pack.add { { src = 'https://github.com/meanderingprogrammer/render-markdown.nvim' } }

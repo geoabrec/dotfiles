@@ -13,6 +13,8 @@ do
 
   vim.o.showmode = false
 
+  vim.o.relativenumber = true
+
   vim.o.expandtab = true
   vim.o.tabstop = 2
   vim.o.shiftwidth = 2
@@ -42,6 +44,7 @@ do
   vim.o.inccommand = 'split'
 
   vim.o.cursorline = true
+  vim.o.cursorlineopt = 'number'
 
   vim.o.scrolloff = 10
 
@@ -111,7 +114,6 @@ do
       vim.notify(('Build failed for %s:\n%s'):format(name, output), vim.log.levels.ERROR)
     end
   end
-
   vim.api.nvim_create_autocmd('PackChanged', {
     callback = function(ev)
       local name = ev.data.spec.name
@@ -159,38 +161,38 @@ do
       changedelete = { text = '~' }, ---@diagnostic disable-line: missing-fields
     },
   }
-
-  vim.pack.add { gh 'folke/which-key.nvim' }
-  require('which-key').setup {
-    delay = 0,
-    icons = { mappings = vim.g.have_nerd_font },
-    spec = {
-      { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
-      { '<leader>t', group = '[T]oggle' },
-      { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-      { 'gr', group = 'LSP Actions', mode = { 'n' } },
-    },
-  }
-  vim.pack.add { gh 'folke/todo-comments.nvim' }
-  require('todo-comments').setup { signs = false }
-
-  vim.pack.add { gh 'nvim-mini/mini.nvim' }
-
-  if vim.g.have_nerd_font then
-    require('mini.icons').setup()
-    MiniIcons.mock_nvim_web_devicons()
-  end
-
-  require('mini.ai').setup {
-    mappings = {
-      around_next = 'aa',
-      inside_next = 'ii',
-    },
-    n_lines = 500,
-  }
-
-  require('mini.surround').setup()
 end
+
+vim.pack.add { gh 'folke/which-key.nvim' }
+require('which-key').setup {
+  delay = 0,
+  icons = { mappings = vim.g.have_nerd_font },
+  spec = {
+    { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
+    { '<leader>t', group = '[T]oggle' },
+    { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+    { 'gr', group = 'LSP Actions', mode = { 'n' } },
+  },
+}
+vim.pack.add { gh 'folke/todo-comments.nvim' }
+require('todo-comments').setup { signs = false }
+
+vim.pack.add { gh 'nvim-mini/mini.nvim' }
+
+if vim.g.have_nerd_font then
+  require('mini.icons').setup()
+  MiniIcons.mock_nvim_web_devicons()
+end
+
+require('mini.ai').setup {
+  mappings = {
+    around_next = 'aa',
+    inside_next = 'ii',
+  },
+  n_lines = 500,
+}
+
+require('mini.surround').setup()
 
 -- 5. Search & Navigation
 
@@ -320,11 +322,8 @@ do
   ---@type table<string, vim.lsp.Config>
   local servers = {
     clangd = {},
-    html = {},
-    cssls = {},
     basedpyright = {},
     stylua = {},
-    gopls = {},
     lua_ls = {
       on_init = function(client)
         client.server_capabilities.documentFormattingProvider = false
@@ -394,9 +393,6 @@ do
         python = true,
         c = true,
         cpp = true,
-        go = true,
-        html = true,
-        css = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
@@ -411,9 +407,6 @@ do
       c = { 'clang-format' },
       cpp = { 'clang-format' },
       python = { 'ruff_fix', 'ruff_organize_imports', 'ruff_format' },
-      go = { 'dingo' },
-      html = { 'oxfmt' },
-      css = { 'oxfmt' },
     },
   }
 
@@ -535,9 +528,17 @@ local function make_transparent()
     'StatusLine',
     'StatusLineNC',
     'EndOfBuffer',
+    'LineNr',
+    'LineNrAbove',
+    'LineNrBelow',
+    'CursorLineNr',
+    'FoldColumn',
   }
+  -- Keep fg, only drop bg
   for _, g in ipairs(groups) do
-    vim.api.nvim_set_hl(0, g, { bg = 'NONE', ctermbg = 'NONE' })
+    local attrs = vim.api.nvim_get_hl(0, { name = g, link = false })
+    attrs.bg, attrs.ctermbg = nil, nil
+    vim.api.nvim_set_hl(0, g, attrs)
   end
 end
 
