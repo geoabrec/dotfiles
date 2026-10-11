@@ -8,6 +8,4 @@ vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yank to system clipbo
 
 vim.keymap.set({ 'n' }, '<leader>p', ':Ex <CR>', { desc = 'Open explorer' })
 
-vim.keymap.set({ 'n' }, '<leader>o', ':Sex! <CR>', { desc = 'Open explorer in new window' })
-
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
