@@ -7,10 +7,14 @@ vim.o.mouse = 'a'
 vim.o.showmode = false
 vim.o.confirm = true
 
+vim.o.hlsearch = false
+vim.o.incsearch = true
+
 vim.o.relativenumber = true
 vim.o.signcolumn = 'yes'
 vim.o.cursorline = true
 vim.o.cursorlineopt = 'number'
+vim.o.guicursor = 'a:block-blinkwait500-blinkon500-blinkoff500'
 vim.o.scrolloff = 10
 
 vim.o.expandtab = true

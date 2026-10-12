@@ -49,3 +49,8 @@ end
 vim.keymap.set('n', '<leader>a', function() harpoon:list():add() end, { desc = 'Add to Harpoon' })
 vim.keymap.set('n', '<leader>e', function() harpoon:list():remove() end, { desc = 'Remove from Harpoon' })
 vim.keymap.set('n', '<C-e>', harpoon_picker, { desc = 'Open Harpoon list' })
+
+vim.keymap.set('n', '<C-m>', function() harpoon:list():select(1) end)
+vim.keymap.set('n', '<C-t>', function() harpoon:list():select(2) end)
+vim.keymap.set('n', '<C-n>', function() harpoon:list():select(3) end)
+vim.keymap.set('n', '<C-s>', function() harpoon:list():select(4) end)
