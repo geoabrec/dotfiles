@@ -10,6 +10,7 @@ vim.o.confirm = true
 vim.o.hlsearch = false
 vim.o.incsearch = true
 
+vim.o.number = true
 vim.o.relativenumber = true
 vim.o.signcolumn = 'yes'
 vim.o.cursorline = true

@@ -71,6 +71,10 @@
       "rev": "fe3a0c4d2acf13ed6f7f0f1fede0a2570f13b06e",
       "src": "https://github.com/danilo-augusto/vim-afterglow"
     },
+    "vim-obsession": {
+      "rev": "dad3b5a1f9b661e27cb77fc69308287349d3cf30",
+      "src": "https://github.com/tpope/vim-obsession"
+    },
     "vim-tmux-navigator": {
       "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
       "src": "https://github.com/christoomey/vim-tmux-navigator"

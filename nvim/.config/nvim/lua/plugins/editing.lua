@@ -4,10 +4,13 @@ vim.pack.add {
   'https://github.com/nvim-lua/plenary.nvim',
   'https://github.com/NMAC427/guess-indent.nvim',
   'https://github.com/christoomey/vim-tmux-navigator',
+  'https://github.com/tpope/vim-obsession',
   { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' },
 }
 
 -- vim-tmux-navigator needs no setup call: it maps <C-h/j/k/l> across Neovim splits and tmux panes
+
+-- vim-obsession needs no setup call: :Obsess keeps Session.vim updated, which tmux-resurrect restores with `nvim -S`
 
 require('guess-indent').setup {}
 
