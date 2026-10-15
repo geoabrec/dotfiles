@@ -38,7 +38,7 @@ How Stow links things:
 2. Log in to GitHub (the repo is private) and clone it over HTTPS:
    ```sh
    gh auth login
-   git clone https://github.com/geoabrec/dotfiles.git ~/dotfiles
+   gh repo clone geoabrec/dotfiles ~/dotfiles
    ```
 3. Link everything:
    ```sh
