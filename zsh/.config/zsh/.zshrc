@@ -90,13 +90,13 @@ eval "$(starship init zsh)"
 # SSH key
 # =========================================================
 
-# Unlock the key once per boot (first terminal asks for the passphrase)
-# (ssh-add -l exits 1 when the agent runs but holds no keys)
-if [[ -o interactive ]]; then
-  ssh-add -l >/dev/null 2>&1
-  if [[ $? -eq 1 ]]; then
-    ssh-add ~/.ssh/id_ed25519
-  fi
+# Put the key in the agent once per boot, so the first terminal asks for the passphrase.
+# AddKeysToAgent in ~/.ssh/config only adds it when ssh connects somewhere, but git
+# commit signing (ssh-keygen -Y sign) needs it in the agent beforehand.
+# ssh-add -l exits 0 if the agent has keys, 1 if it has none, 2 if there's no agent.
+ssh-add -l >/dev/null 2>&1
+if [[ $? -eq 1 ]]; then
+  ssh-add ~/.ssh/id_ed25519
 fi
 
 # =========================================================
