@@ -1,0 +1,13 @@
+# zsh caches
+*.zwc
+.zcompdump*
+
+# zsh plugins (Plan 2 moves them out of the repo and drops this line)
+zsh/.config/zsh/plugins/
+
+# machine-local zsh overrides
+zsh/.config/zsh/local.zsh
+
+# editor junk
+*.swp
+*~
