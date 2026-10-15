@@ -16,7 +16,7 @@
     "local-mods": {
       "source": {
         "source": "directory",
-        "path": "/home/geomar/.claude/mods"
+        "path": "~/.claude/mods"
       }
     }
   },
