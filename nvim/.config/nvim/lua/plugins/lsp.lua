@@ -4,7 +4,6 @@ vim.pack.add {
   'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim',
 }
 
--- Mason package names. Formatters are used by lua/plugins/formatting.lua.
 require('mason').setup {}
 require('mason-tool-installer').setup {
   ensure_installed = {
@@ -17,7 +16,6 @@ require('mason-tool-installer').setup {
   },
 }
 
--- lspconfig server names. Each value overrides the defaults shipped by nvim-lspconfig.
 ---@type table<string, vim.lsp.Config>
 local servers = {
   clangd = {},
@@ -61,7 +59,6 @@ for name, server in pairs(servers) do
   vim.lsp.enable(name)
 end
 
--- Neovim already maps grn (rename) and gra (code action); these add what it doesn't.
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
   callback = function(event)

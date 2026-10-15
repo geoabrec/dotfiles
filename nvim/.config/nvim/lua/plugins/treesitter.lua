@@ -1,4 +1,3 @@
--- Rebuild parsers whenever the plugin itself is installed or updated
 vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
     if ev.data.spec.name ~= 'nvim-treesitter' then return end
@@ -13,8 +12,7 @@ vim.pack.add { { src = 'https://github.com/nvim-treesitter/nvim-treesitter', ver
 
 local treesitter = require 'nvim-treesitter'
 
--- Installed up front. Any other language is installed the first time a file of that type is opened.
-treesitter.install { 'bash', 'c', 'cpp', 'diff', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'python', 'query', 'vim', 'vimdoc' }
+treesitter.install { 'bash', 'c', 'cpp', 'diff', 'latex', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'python', 'query', 'vim', 'vimdoc' }
 
 ---@param buf integer
 ---@param language string

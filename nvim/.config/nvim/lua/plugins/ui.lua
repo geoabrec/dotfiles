@@ -8,7 +8,6 @@ vim.pack.add {
   'https://github.com/meanderingprogrammer/render-markdown.nvim',
 }
 
--- Icons for Telescope, lualine, which-key and render-markdown
 require('mini.icons').setup()
 MiniIcons.mock_nvim_web_devicons()
 
@@ -52,10 +51,8 @@ require('which-key').setup {
   },
 }
 
--- LSP progress in the bottom-right corner
 require('fidget').setup {}
 
--- Git change markers in the sign column
 require('gitsigns').setup {
   signs = {
     add = { text = '+' }, ---@diagnostic disable-line: missing-fields
@@ -66,7 +63,6 @@ require('gitsigns').setup {
   },
 }
 
--- Quickfix list columns
 require('qf-formatter').setup {
   filename_width = 32,
 }
@@ -75,4 +71,6 @@ vim.api.nvim_set_hl(0, 'QfFormatterFilename', { fg = '#e87d3e' })
 vim.api.nvim_set_hl(0, 'QfFormatterSeparator', { fg = '#d6d6d6' })
 vim.api.nvim_set_hl(0, 'QfFormatterLineNr', { fg = '#d6d6d6' })
 
--- render-markdown needs no setup call: it starts itself on Markdown buffers
+require('render-markdown').setup {
+  latex = { enabled = false },
+}

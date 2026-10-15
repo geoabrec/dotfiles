@@ -1,4 +1,3 @@
--- Leader must be set before any plugin defines a <leader> keymap
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 

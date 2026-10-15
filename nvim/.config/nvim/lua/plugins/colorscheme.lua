@@ -15,7 +15,6 @@ local function make_transparent()
     'CursorLineNr',
     'FoldColumn',
   }
-  -- Keep fg, only drop bg
   for _, g in ipairs(groups) do
     local attrs = vim.api.nvim_get_hl(0, { name = g, link = false })
     attrs.bg, attrs.ctermbg = nil, nil

@@ -15,7 +15,6 @@ require('conform').setup {
       return nil
     end
   end,
-  -- Filetypes without a formatter below fall back to the language server (Lua uses stylua this way)
   default_format_opts = {
     lsp_format = 'fallback',
   },

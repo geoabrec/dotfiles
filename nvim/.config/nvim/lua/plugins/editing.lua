@@ -1,4 +1,3 @@
--- mini.nvim and plenary are also added by other files; vim.pack.add ignores repeats
 vim.pack.add {
   'https://github.com/nvim-mini/mini.nvim',
   'https://github.com/nvim-lua/plenary.nvim',
@@ -7,10 +6,6 @@ vim.pack.add {
   'https://github.com/tpope/vim-obsession',
   { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' },
 }
-
--- vim-tmux-navigator needs no setup call: it maps <C-h/j/k/l> across Neovim splits and tmux panes
-
--- vim-obsession needs no setup call: :Obsess keeps Session.vim updated, which tmux-resurrect restores with `nvim -S`
 
 require('guess-indent').setup {}
 
@@ -56,4 +51,4 @@ vim.keymap.set('n', '<C-e>', harpoon_picker, { desc = 'Open Harpoon list' })
 vim.keymap.set('n', '<C-m>', function() harpoon:list():select(1) end)
 vim.keymap.set('n', '<C-t>', function() harpoon:list():select(2) end)
 vim.keymap.set('n', '<C-n>', function() harpoon:list():select(3) end)
-vim.keymap.set('n', '<C-s>', function() harpoon:list():select(4) end)
+vim.keymap.set('n', '<C-p>', function() harpoon:list():select(4) end)
