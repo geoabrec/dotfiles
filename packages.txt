@@ -1,0 +1,57 @@
+# Packages the configs in this repo call. Install with:
+#   grep -v '^#' packages.txt | yay -S --needed -
+# yay itself (AUR: yay-bin) must be installed first. Claude Code comes from
+# its own installer, not pacman. steam needs [multilib] in /etc/pacman.conf.
+#
+# base: linking, SSH commit signing, building AUR packages and treesitter parsers
+stow
+git
+openssh
+base-devel
+# zsh
+zsh
+starship
+eza
+bat
+fzf
+fd
+ripgrep
+zoxide
+# tmux (TPM and its plugins are cloned with git)
+tmux
+# nvim: Mason installs the LSP servers and formatters (needs unzip, python);
+# nvim-treesitter builds parsers with tree-sitter-cli; "+y needs wl-clipboard;
+# telescope live_grep uses ripgrep (listed under zsh)
+neovim
+tree-sitter-cli
+wl-clipboard
+unzip
+python
+# mdv
+pandoc-cli
+xdg-utils
+# claude: statusline.sh
+jq
+# kitty (the font is also used by waybar)
+kitty
+ttf-jetbrains-mono-nerd
+# waybar (auto-reload.sh uses inotifywait)
+waybar
+inotify-tools
+# rofi
+rofi
+# hypr: session, lock, audio, brightness, media keys, apps bound to keys
+hyprland
+hyprpolkitagent
+swaylock
+wireplumber
+brightnessctl
+playerctl
+nemo
+librewolf
+steam
+# hypr: AUR (wallpaper restore, cursor theme)
+waypaper
+bibata-cursor-theme-bin
+# fastfetch
+fastfetch
