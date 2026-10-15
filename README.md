@@ -55,7 +55,7 @@ How Stow links things:
 - Set the themes, which their GUI tools own and so aren't in the repo:
   - GTK (with `nwg-look`): theme `Adwaita-dark`, icons `Adwaita`, font `Adwaita Sans 11`
   - Qt (with `qt6ct`): style `Fusion`, colour scheme `darker`
-  - Cursor: `Bibata-Modern-Ice` at size 24 (Hyprland sets it on start)
+  - Cursor: `Bibata-Modern-Ice` at size 24, the same name everywhere: in `nwg-look` (GTK), and as `XCURSOR_THEME` and `XCURSOR_SIZE` in `/etc/environment`. Hyprland also sets it on start.
 
 ## Adding a new config
 
