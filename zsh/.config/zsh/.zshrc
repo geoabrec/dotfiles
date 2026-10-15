@@ -69,11 +69,11 @@ source "$ZDOTDIR/fzf.zsh"
 # Aliases
 source "$ZDOTDIR/aliases.zsh"
 
-# Custom keybindings
-source "$ZDOTDIR/bindings.zsh"
-
 # Plugins and plugin manager
 source "$ZDOTDIR/plugins.zsh"
+
+# Vi mode and keybindings (after plugins, so their widgets exist)
+source "$ZDOTDIR/keys.zsh"
 
 # Prompt/theme
 source "$ZDOTDIR/prompt.zsh"
