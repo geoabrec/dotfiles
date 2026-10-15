@@ -72,7 +72,7 @@ eval "$(zoxide init zsh)"
 # Prompt
 # =========================================================
 
-# Prevent Python virtualenv from polluting the prompt
+# starship's python module shows the virtualenv, so activate shouldn't add its own (venv) prefix
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # After keys.zsh: starship wraps its zle-keymap-select hook to show ❮ in normal mode

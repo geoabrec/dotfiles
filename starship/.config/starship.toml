@@ -3,7 +3,7 @@
 
 add_newline = false
 
-format = "$directory$os$git_branch$git_status$nodejs $character"
+format = "$directory$os$git_branch$git_status$nodejs$cpp$python $character"
 
 [os]
 disabled = false
@@ -35,6 +35,17 @@ conflicted = "[⚡$count ](bold red)"
 [nodejs]
 symbol = ""
 format = "[$symbol $version](green) "
+
+# Off by default in starship; shows the g++ version in C++ folders (learncpp)
+[cpp]
+disabled = false
+symbol = ""
+format = "[$symbol $version](blue) "
+
+# Python version, plus the active virtualenv (activate's own prompt prefix is off in .zshrc)
+[python]
+symbol = ""
+format = '[$symbol $version( \($virtualenv\))](yellow) '
 
 [character]
 success_symbol = "[❯](green)"
