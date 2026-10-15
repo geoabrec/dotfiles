@@ -35,12 +35,11 @@ jq
 # kitty (the font is also used by waybar)
 kitty
 ttf-jetbrains-mono-nerd
-# waybar (auto-reload.sh uses inotifywait; clicks open bluetui, btop, htop in kitty)
+# waybar (auto-reload.sh uses inotifywait; clicks open bluetui and btop in kitty)
 waybar
 inotify-tools
 bluetui
 btop
-htop
 # rofi
 rofi
 # hypr: session, lock, audio, brightness, media keys, apps bound to keys
