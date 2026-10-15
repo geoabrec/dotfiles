@@ -25,5 +25,9 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/ssh-agent.socket"
 export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
 
 # ---------- PATH ----------
+# Drop duplicate entries, since every nested zsh and script reads this file again.
+# -U only applies to assignments to the array path (tied to PATH), not to PATH=...
+typeset -U path
+
 # Personal binaries/scripts
-export PATH="$HOME/.local/bin:$PATH"
+path=("$HOME/.local/bin" $path)

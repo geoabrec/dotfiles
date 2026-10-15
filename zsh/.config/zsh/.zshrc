@@ -14,8 +14,6 @@
 # History
 # =========================================================
 
-typeset -U path
-
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=100000
 SAVEHIST=100000
@@ -36,15 +34,10 @@ setopt NOBEEP
 setopt NUMERIC_GLOB_SORT  # sort file10 after file9, not after file1
 
 # =========================================================
-# Smart directory navigation & lf
-# =========================================================
-
-# Initialize zoxide
-eval "$(zoxide init zsh)"
-
-# =========================================================
 # Completion
 # =========================================================
+
+# Before anything that calls compdef (aliases.zsh) or adds completions (fzf's **<Tab>)
 
 # Load completion system
 autoload -Uz compinit
@@ -63,29 +56,35 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'  # lowercase input matche
 # Modular Config Files
 # =========================================================
 
-# fzf configuration
+# fzf: defines its widgets and binds its own keys in the emacs, viins and vicmd keymaps
 source "$ZDOTDIR/fzf.zsh"
 
-# Aliases
+# Aliases, then the shell functions (cr, lf)
 source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/functions.zsh"
 
-# Plugins and plugin manager
+# Plugins: after the custom widgets above, so syntax highlighting can wrap them
 source "$ZDOTDIR/plugins.zsh"
 
-# Vi mode and keybindings (after plugins, so their widgets exist)
+# Vi mode and keybindings: after the plugins, so every widget exists when it is bound
 source "$ZDOTDIR/keys.zsh"
 
-# Prompt/theme
-source "$ZDOTDIR/prompt.zsh"
-
-
 # =========================================================
-# User Custom Configurations
+# Smart directory navigation
 # =========================================================
 
-if [[ -f "$ZDOTDIR/local.zsh" ]]; then
-  source "$ZDOTDIR/local.zsh"
-fi
+# zoxide's docs say to initialise it after compinit, near the end
+eval "$(zoxide init zsh)"
+
+# =========================================================
+# Prompt
+# =========================================================
+
+# Prevent Python virtualenv from polluting the prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# After keys.zsh: starship wraps its zle-keymap-select hook to show ❮ in normal mode
+eval "$(starship init zsh)"
 
 # =========================================================
 # SSH key
@@ -98,4 +97,13 @@ if [[ -o interactive ]]; then
   if [[ $? -eq 1 ]]; then
     ssh-add ~/.ssh/id_ed25519
   fi
+fi
+
+# =========================================================
+# User Custom Configurations
+# =========================================================
+
+# Last, so machine-only overrides (gitignored) win over everything above
+if [[ -f "$ZDOTDIR/local.zsh" ]]; then
+  source "$ZDOTDIR/local.zsh"
 fi
