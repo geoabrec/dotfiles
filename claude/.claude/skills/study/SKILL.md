@@ -7,13 +7,14 @@ description: Explain and connect the user's notes, tutor advanced mathematics an
 
 ## Context
 
-Fixed paths, used from any working directory:
-- Profile: `/home/geomar/Desktop/geomar-database/notes/Profile.md`
-- Practice folder: `/home/geomar/Desktop/geomar-database/notes/.practice` (its `CLAUDE.md` holds the rules; saved tests live there)
+This skill works from any directory and on any machine, so it names no fixed paths. It needs one location, the user's **practice folder**, which holds their saved tests and a `CLAUDE.md` with the practice rules. Find it in this order:
+1. Where the user's instructions or saved memory say it is.
+2. A folder named `practice` or `.practice` in the working directory or one of its parents.
+3. Otherwise ask once, then record the answer (assistant memory, or the user-level instructions if the user prefers) so it is not asked again.
 
-If either is unavailable, ask for its location; do not create a replacement.
+If a recorded location no longer exists, ask for the new one; do not create a replacement. If the user has no practice folder, continue without one.
 
-Read the practice folder's `CLAUDE.md`, `Profile.md`, and the notes the user asks about. Notes live next to the project they belong to (for example `chapter-NN/notes.md` in a learning project), or in `/home/geomar/Desktop/geomar-database/notes` when they belong to no project; resolve a named note against the working directory first. Recent test feedback in the practice folder (its "Next" sections) can help calibrate. Ask which topic or notes to use if unspecified. Notes are the user's own writing: read them, never edit them unless explicitly asked. Never assume access to missing conversations or infer competence from note ownership.
+Read the practice folder's `CLAUDE.md`, which names the user's profile and where notes that belong to no project live, then that profile and the notes the user asks about. Notes live next to the project they belong to (for example `chapter-NN/notes.md` in a learning project); resolve a named note against the working directory first, then the loose-notes location the rules file names. Recent test feedback in the practice folder (its "Next" sections) can help calibrate. Ask which topic or notes to use if unspecified. Notes are the user's own writing: read them, never edit them unless explicitly asked. Never assume access to missing conversations or infer competence from note ownership.
 
 Use recorded prerequisites to calibrate; do not impose a new curriculum or assume advanced readiness. Connect to numerical methods, probability, algorithms, performance, and finance when genuinely relevant—not as decoration.
 
