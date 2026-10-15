@@ -11,7 +11,7 @@
 [pull]
 	rebase = true
 [init]
-	defaultBranh = main
+	defaultBranch = main
 [gpg]
 	format = ssh
 [commit]
