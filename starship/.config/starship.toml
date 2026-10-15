@@ -1,3 +1,4 @@
+# Layout based on radleylewis/zsh (MIT, see ../../zsh/LICENSE.radleylewis)
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = false

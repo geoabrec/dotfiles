@@ -1,56 +1,48 @@
-# Powerful but minimal zsh configuration
-#Author: Radley E. Sidwell-Lewis
-# GitHub: https://www.github.com/radleylewis/zsh
-#
-# Uses:
-#   Plugins:      fast-syntax-highlighting, zsh-autosuggestions,
-#                 zsh-history-substring-search, zsh-vi-mode
-#   Prompt:       starship
-#   Navigation:   zoxide, fzf, fd
-#   CLI tools:    eza, bat, nvim, ripgrep
-#   Node:         nvm
+# ~/.config/zsh/.zshrc: options, completion, plugins, keys and prompt for interactive shells.
+# zsh reads it after .zshenv in every interactive shell, login or not; scripts never read it.
+# The whole setup (load order, file map, key bindings) is explained in ~/dotfiles/zsh/README.md.
 
 # =========================================================
 # History
 # =========================================================
 
+# In the XDG state folder instead of a dotfile in ~
 HISTFILE="$XDG_STATE_HOME/zsh/history"
+
+# Lines kept in memory and on disk; big enough that old commands stay searchable
 HISTSIZE=100000
 SAVEHIST=100000
 
+# One history shared by every open terminal, without the noise
 setopt APPEND_HISTORY
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_FIND_NO_DUPS
+setopt SHARE_HISTORY           # each command is visible in the other terminals right away
+setopt HIST_IGNORE_DUPS        # don't store a command twice in a row
+setopt HIST_IGNORE_SPACE       # a leading space keeps a command out of history
+setopt HIST_EXPIRE_DUPS_FIRST  # when trimming, drop duplicates before unique commands
+setopt HIST_FIND_NO_DUPS       # searches don't show the same command twice
 
 # =========================================================
 # Shell behaviour
 # =========================================================
 
-setopt AUTOCD
-setopt NOBEEP
+setopt AUTOCD             # type a directory's name to cd into it
+setopt NOBEEP             # no terminal bell on errors or failed completion
 setopt NUMERIC_GLOB_SORT  # sort file10 after file9, not after file1
 
 # =========================================================
 # Completion
 # =========================================================
 
-# Before anything that calls compdef (aliases.zsh) or adds completions (fzf's **<Tab>)
-
-# Load completion system
+# Before anything that calls compdef (aliases.zsh) or adds completions (fzf's **<Tab>).
+# The dump caches what compinit finds, so later shells start faster; it lives in the XDG cache.
 autoload -Uz compinit
-
-# Initialize completion with cached metadata file
 compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
 
-# Enable interactive completion menu selection
+# Tab opens a list you can move through with the arrow keys, instead of only cycling
 zstyle ':completion:*' menu select
 
-# Make completion case-insensitive
-# Example: "doc" can complete to "Documents"
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'  # lowercase input matches upper and lower
+# Lowercase input also matches uppercase: "doc" completes to "Documents"
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # =========================================================
 # Modular Config Files

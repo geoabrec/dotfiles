@@ -5,6 +5,8 @@
 # Plugins are downloaded data, not config, so they live outside the repo
 ZPLUGINDIR="$XDG_DATA_HOME/zsh/plugins"
 
+# A minimal plugin manager: clone a plugin on first use, then source it.
+# Usage: _zplugin_load <github-user> <repo>
 _zplugin_load() {
   local plugin_path="${ZPLUGINDIR}/${2}"
   if [[ ! -d "$plugin_path" ]]; then
@@ -16,6 +18,7 @@ _zplugin_load() {
   source "${plugin_path}/${2}.plugin.zsh"
 }
 
+# Plugins never update on their own; run this to pull all of them
 zplugin-update() {
   local dir
   for dir in "${ZPLUGINDIR}"/*/; do
