@@ -1,0 +1,35 @@
+#!/bin/sh
+# mdv: render a Markdown file to HTML and open it in the browser.
+# Usage: mdv FILE.md
+# Look:  ~/.config/mdv/style.css and template.html
+
+set -eu
+
+if [ $# -ne 1 ] || [ ! -f "$1" ]; then
+    echo "usage: mdv FILE.md" >&2
+    exit 1
+fi
+
+src=$(realpath -- "$1")
+dir=$(dirname -- "$src")
+name=$(basename -- "$src" .md)
+conf="${XDG_CONFIG_HOME:-$HOME/.config}/mdv"
+
+# One HTML file per source path, kept in a tmpfs that is cleared at logout.
+out_dir="${XDG_RUNTIME_DIR:-/tmp}/mdv"
+out="$out_dir/$(printf %s "$src" | md5sum | cut -c1-8)-$name.html"
+mkdir -p "$out_dir"
+
+pandoc "$src" \
+    --from=gfm+tex_math_dollars \
+    --to=html \
+    --standalone \
+    --template="$conf/template.html" \
+    --css="$conf/style.css" \
+    --math-method=mathml \
+    --embed-resources \
+    --resource-path="$dir" \
+    --metadata=pagetitle="$(basename -- "$dir")/$name" \
+    --output="$out"
+
+setsid -f xdg-open "$out" >/dev/null 2>&1

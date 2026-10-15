@@ -1,0 +1,152 @@
+/* mdv reading view. Colours follow the Afterglow terminal theme. */
+
+:root {
+  --bg: #202020;
+  --bg-alt: #181818;
+  --line: #3a3a3a;
+  --fg: #d0d0d0;
+  --fg-strong: #f5f5f5;
+  --fg-muted: #8c8c8c;
+
+  --red: #d05a5b;
+  --orange: #e87d3e;
+  --yellow: #e5b567;
+  --green: #b4c973;
+  --cyan: #7dd5cf;
+  --blue: #6c99bb;
+  --purple: #9e86c8;
+
+  --text-font: Inter, "Adwaita Sans", "Noto Sans", system-ui, sans-serif;
+  --code-font: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace;
+}
+
+/* Page */
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  font: 17px/1.65 var(--text-font);
+}
+
+body {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+  overflow-wrap: break-word;
+}
+
+/* Headings */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--fg-strong);
+  line-height: 1.25;
+  margin: 2.2em 0 0.6em;
+}
+
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.45rem; padding-bottom: 0.3em; border-bottom: 1px solid var(--line); }
+h3 { font-size: 1.2rem; }
+h4, h5, h6 { font-size: 1rem; color: var(--fg); }
+
+body > :first-child { margin-top: 0; }
+
+/* Text */
+
+p, ul, ol, blockquote, pre, table { margin: 0 0 1.1em; }
+
+a { color: var(--blue); text-decoration-color: var(--line); text-underline-offset: 0.2em; }
+a:hover { text-decoration-color: currentColor; }
+
+strong { color: var(--fg-strong); }
+del { color: var(--fg-muted); }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2.2em 0; }
+
+img { max-width: 100%; }
+
+/* Lists */
+
+ul, ol { padding-left: 1.6em; }
+li { margin: 0.25em 0; }
+li > ul, li > ol { margin-bottom: 0; }
+li::marker { color: var(--fg-muted); }
+
+ul.task-list { list-style: none; padding-left: 0.3em; }
+ul.task-list input { margin: 0 0.6em 0 0; accent-color: var(--yellow); }
+
+/* Quotes and callouts */
+
+blockquote, div.note, div.tip, div.important, div.warning, div.caution {
+  padding: 0.1em 0 0.1em 1em;
+  border-left: 3px solid var(--line);
+}
+
+blockquote { color: var(--fg-muted); }
+blockquote > :last-child, div.title + :last-child { margin-bottom: 0; }
+
+div.note, div.tip, div.important, div.warning, div.caution { margin: 0 0 1.1em; }
+div.title p { margin: 0 0 0.3em; font-weight: 600; }
+
+div.note      { border-color: var(--blue); }
+div.tip       { border-color: var(--green); }
+div.important { border-color: var(--purple); }
+div.warning   { border-color: var(--yellow); }
+div.caution   { border-color: var(--red); }
+
+div.note .title      { color: var(--blue); }
+div.tip .title       { color: var(--green); }
+div.important .title { color: var(--purple); }
+div.warning .title   { color: var(--yellow); }
+div.caution .title   { color: var(--red); }
+
+/* Tables */
+
+table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { padding: 0.45em 0.8em; border: 1px solid var(--line); vertical-align: top; }
+th { color: var(--fg-strong); background: var(--bg-alt); text-align: left; }
+
+/* Code */
+
+code { font: 0.88em var(--code-font); }
+
+:not(pre) > code {
+  padding: 0.15em 0.35em;
+  background: var(--bg-alt);
+  border-radius: 4px;
+  color: var(--yellow);
+}
+
+pre {
+  padding: 0.9em 1.1em;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+div.sourceCode { margin: 0 0 1.1em; }
+div.sourceCode > pre { margin: 0; }
+pre a { color: inherit; text-decoration: none; }
+
+/* Syntax tokens (pandoc's class names) */
+
+code span.co, code span.do, code span.an, code span.cv, code span.in { color: var(--fg-muted); font-style: italic; }
+code span.kw, code span.cf, code span.im { color: var(--purple); }
+code span.dt, code span.bu, code span.at { color: var(--blue); }
+code span.st, code span.ch, code span.vs, code span.ss { color: var(--green); }
+code span.dv, code span.bn, code span.fl, code span.cn { color: var(--orange); }
+code span.fu, code span.ex { color: var(--yellow); }
+code span.pp, code span.ot { color: var(--cyan); }
+code span.sc { color: var(--cyan); }
+code span.er, code span.al { color: var(--red); }
+
+/* Math */
+
+math { font-family: "Latin Modern Math", "STIX Two Math", "Noto Sans Math", math; font-size: 1.1em; }
+math[display="block"] { margin: 1.3em 0; font-size: 1.2em; }
+
+/* Footnotes */
+
+section.footnotes { margin-top: 3em; font-size: 0.9em; color: var(--fg-muted); }
+a.footnote-ref, a.footnote-back { text-decoration: none; }
