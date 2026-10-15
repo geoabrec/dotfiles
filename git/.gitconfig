@@ -7,7 +7,7 @@
 [user]
 	email = geomarac64@proton.me
 	name = Geomar Abreu
-	signingkey = /home/geomar/.ssh/id_ed25519.pub
+	signingkey = ~/.ssh/id_ed25519.pub
 [pull]
 	rebase = true
 [init]
@@ -17,4 +17,4 @@
 [commit]
 	gpgsign = true
 [gpg "ssh"]
-	allowedSignersFile = /home/geomar/.ssh/allowed_signers
+	allowedSignersFile = ~/.ssh/allowed_signers
