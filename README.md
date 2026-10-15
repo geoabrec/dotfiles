@@ -35,10 +35,9 @@ How Stow links things:
    ```sh
    grep -v '^#' packages.txt | yay -S --needed -
    ```
-2. Log in to GitHub (the repo is private) and clone it over HTTPS:
+2. Clone the repo (log in with `gh auth login` only if you'll push; `.gitconfig` uses gh for GitHub credentials):
    ```sh
-   gh auth login
-   gh repo clone geoabrec/dotfiles ~/dotfiles
+   git clone https://github.com/geoabrec/dotfiles.git ~/dotfiles
    ```
 3. Link everything:
    ```sh
