@@ -60,6 +60,16 @@ bindkey -M vicmd '^E' edit-command-line
 bindkey -M viins '^[[1;5C' forward-word
 bindkey -M viins '^[[1;5D' backward-word
 
+# Home, End and Delete. Unbound, their leading Esc would switch to normal mode and the
+# rest of the sequence would run as vi commands. kitty and tmux send different codes.
+for m in viins vicmd; do
+  bindkey -M $m '^[[H'  beginning-of-line  # Home in kitty
+  bindkey -M $m '^[[1~' beginning-of-line  # Home in tmux
+  bindkey -M $m '^[[F'  end-of-line        # End in kitty
+  bindkey -M $m '^[[4~' end-of-line        # End in tmux
+  bindkey -M $m '^[[3~' delete-char        # Delete in both
+done
+
 # Ctrl+F -> fzf file picker (no hidden files)
 bindkey -M viins '^F' _fzf_file_no_hidden
 

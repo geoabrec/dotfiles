@@ -52,6 +52,7 @@ Outside the repo:
 | ↑ / ↓ | search history for lines containing what you've typed |
 | → | accept the grey autosuggestion |
 | Ctrl-← / Ctrl-→ | move a word left or right |
+| Home / End / Delete | start or end of the line, delete the character under the cursor (in normal mode too) |
 | Tab | completion menu (move with the arrow keys) |
 | `**`Tab | fzf completion, e.g. `nvim **<Tab>` |
 | Ctrl-R | fzf: search history |
