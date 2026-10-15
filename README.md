@@ -17,6 +17,7 @@ Each top-level folder is a Stow *package* whose contents mirror `$HOME`: `zsh/.z
 | `nvim` | Neovim (imported with its full history) |
 | `pacman` | `makepkg.conf` overrides |
 | `rofi` | rofi launcher |
+| `starship` | starship prompt (`~/.config/starship.toml`), used by zsh and the Claude Code status line |
 | `tmux` | tmux (plugins via TPM) |
 | `waybar` | waybar bar and its auto-reload script |
 | `zsh` | `~/.zshenv` stub that sets `ZDOTDIR`, and the zsh config in `~/.config/zsh` |

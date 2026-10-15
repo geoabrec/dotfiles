@@ -21,9 +21,6 @@ fi
 # Agent started by systemd (ssh-agent.socket); holds the unlocked key for git signing/push
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/ssh-agent.socket"
 
-# ---------- Starship ----------
-export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
-
 # ---------- PATH ----------
 # Drop duplicate entries, since every nested zsh and script reads this file again.
 # -U only applies to assignments to the array path (tied to PATH), not to PATH=...

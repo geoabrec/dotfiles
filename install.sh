@@ -5,7 +5,7 @@
 set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PACKAGES=(claude fastfetch git hypr kitty mdv nvim pacman rofi tmux waybar zsh)
+PACKAGES=(claude fastfetch git hypr kitty mdv nvim pacman rofi starship tmux waybar zsh)
 
 stow_all() { stow -d "$DOTFILES" -t "$HOME" "$@" "${PACKAGES[@]}"; }
 
