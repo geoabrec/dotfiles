@@ -1,0 +1,93 @@
+# Personal aliases
+alias g='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gr='git restore'
+alias grm='git remote'
+alias gp='git push'
+alias gpl='git pull'
+alias gpo='git push origin'
+
+alias c='clear'
+alias e='exit'
+
+# Better ls
+alias ls='eza --icons auto'
+
+# Detailed listing
+alias ll='eza -lh --icons --git'
+
+# Detailed listing including hidden files
+alias la='eza -lah --icons auto --git'
+
+# Tree view
+alias tree='eza --tree --icons auto'
+
+# Reuse ls completions for eza (avoids defining a separate completion function)
+compdef eza=ls
+
+# Better cat
+alias cat='bat'
+
+# =========================================================
+# Core utilities
+# =========================================================
+
+alias grep='rg --color=auto'
+alias diff='diff --color=auto'
+alias df='df -h'
+
+# =========================================================
+# Navigation
+# =========================================================
+
+alias -- -='cd -'  # -- prevents - being parsed as a flag; cd - jumps to previous directory
+
+lf() { # zsh follow lf navigation
+    tmp=$(mktemp)
+    command lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir=$(cat "$tmp")
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+
+# =========================================================
+# Editor
+# =========================================================
+
+alias vim='nvim'
+
+# =========================================================
+# C++
+# =========================================================
+
+cr() { # compile & run C++ with the learncpp flags: cr file.cpp | cr folder/
+    local src=${1%/} root out rel
+    root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+    rel=${${src:a}#$root/}
+    out="$root/build/${rel:h}/${${rel:t}%.cpp}"
+    local -a files
+    if [[ -d $src ]]; then files=($src/*.cpp(N)); else files=($src); fi
+    (( $#files )) || { echo "cr: no .cpp files in $src"; return 1; }
+    local -a cmd=(g++ -std=c++23 -g -pedantic-errors -Wall -Wextra
+                  -Wconversion -Wsign-conversion -Werror -o "$out" $files)
+    mkdir -p "${out:h}"
+    print -r -- "${(j: :)cmd}"
+    "${cmd[@]}" && "$out"
+}
+
+# =========================================================
+# Git
+# =========================================================
+
+alias glog='PAGER="less -F -X" git log'                              # -F quit if one screen, -X no clear on exit
+alias gadog='PAGER="less -F -X" git log --all --decorate --oneline --graph'
+alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+# =========================================================
+# Video
+# =========================================================
+
+alias stream='mpv av://v4l2:/dev/video4 --fullscreen --demuxer-lavf-o=input_format=mjpeg,framerate=30 --profile=low-latency --untimed'
