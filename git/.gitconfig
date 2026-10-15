@@ -1,0 +1,20 @@
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[user]
+	email = geomarac64@proton.me
+	name = Geomar Abreu
+	signingkey = /home/geomar/.ssh/id_ed25519.pub
+[pull]
+	rebase = true
+[init]
+	defaultBranh = main
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = /home/geomar/.ssh/allowed_signers
