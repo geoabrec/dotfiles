@@ -2,7 +2,8 @@
 # Plugins
 # =========================================================
 
-ZPLUGINDIR="${ZDOTDIR:-$HOME/.config/zsh}/plugins"
+# Plugins are downloaded data, not config, so they live outside the repo
+ZPLUGINDIR="$XDG_DATA_HOME/zsh/plugins"
 
 _zplugin_load() {
   local plugin_path="${ZPLUGINDIR}/${2}"
@@ -23,6 +24,7 @@ zplugin-update() {
   done
 }
 
+# history-substring-search's README: load it after syntax highlighting
 _zplugin_load zsh-users zsh-autosuggestions
-_zplugin_load zsh-users zsh-history-substring-search
 _zplugin_load zdharma-continuum fast-syntax-highlighting
+_zplugin_load zsh-users zsh-history-substring-search
