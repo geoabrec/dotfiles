@@ -3,10 +3,12 @@
 # yay itself (AUR: yay-bin) must be installed first. Claude Code comes from
 # its own installer, not pacman. steam needs [multilib] in /etc/pacman.conf.
 #
-# base: linking, SSH commit signing, building AUR packages and treesitter parsers
+# base: linking, SSH commit signing, GitHub login (git credential helper),
+# building AUR packages and treesitter parsers
 stow
 git
 openssh
+github-cli
 base-devel
 # zsh
 zsh
