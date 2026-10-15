@@ -15,12 +15,7 @@ export VISUAL="nvim"
 # ---------- Pager ----------
 if command -v bat >/dev/null 2>&1; then
   export MANPAGER="bat -l man -p"
-elif command -v batcat >/dev/null 2>&1; then
-  export MANPAGER="batcat -l man -p"
 fi
-
-# ---------- GPG ----------
-export GPG_TTY=$(tty)
 
 # ---------- SSH agent ----------
 # Agent started by systemd (ssh-agent.socket); holds the unlocked key for git signing/push

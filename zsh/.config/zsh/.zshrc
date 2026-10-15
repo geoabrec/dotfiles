@@ -34,16 +34,10 @@ setopt HIST_FIND_NO_DUPS
 setopt AUTOCD
 setopt NOBEEP
 setopt NUMERIC_GLOB_SORT  # sort file10 after file9, not after file1
-export PI_CLAUDE_CODE_PROVIDER_ACKNOWLEDGED_PLATFORM=linux/x64
 
 # =========================================================
 # Smart directory navigation & lf
 # =========================================================
-
-if [[ -f ~/.config/lf/icons ]]; then
-  LF_ICONS=$(cat ~/.config/lf/icons | tr '\n' ':')
-  export LF_ICONS
-fi
 
 # Initialize zoxide
 eval "$(zoxide init zsh)"
@@ -126,10 +120,6 @@ source "$ZDOTDIR/prompt.zsh"
 if [[ -f "$ZDOTDIR/local.zsh" ]]; then
   source "$ZDOTDIR/local.zsh"
 fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 
 # =========================================================
 # SSH key

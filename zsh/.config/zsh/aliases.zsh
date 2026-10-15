@@ -84,7 +84,6 @@ cr() { # compile & run C++ with the learncpp flags: cr file.cpp | cr folder/
 
 alias glog='PAGER="less -F -X" git log'                              # -F quit if one screen, -X no clear on exit
 alias gadog='PAGER="less -F -X" git log --all --decorate --oneline --graph'
-alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # =========================================================
 # Video
