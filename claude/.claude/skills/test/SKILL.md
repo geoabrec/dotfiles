@@ -28,7 +28,7 @@ Use the mode the user requests. If unspecified, use the remembered mode; if none
 ## Create a test
 
 1. Read the source material completely and check for errors or ambiguities affecting assessment. Flag significant problems in chat before building questions on them. Do not modify the user's notes.
-2. Set a coherent scope appropriate to prerequisites and the user's mathematics/programming goals toward quantitative development. Challenge is welcome; unexplained prerequisite jumps are not. Clearly label extension questions requiring material beyond the notes.
+2. Set a coherent scope appropriate to prerequisites. Challenge is welcome; unexplained prerequisite jumps are not. Clearly label extension questions requiring material beyond the notes.
 3. Independently solve or otherwise validate each problem before presenting it. Ensure sufficient information, reasonable time allocation, consistent assumptions, and correct point totals. Use computation or code checks where practical, without treating numeric evidence as proof. Do not run untrusted code blindly.
 4. Create a descriptive, non-colliding filename in the practice folder such as `YYYY-MM-DD-topic-test.md`. Include title, date, source (note path or chapter), duration, difficulty, allowed resources, feedback mode (or pending choice), and total points.
 5. Write numbered questions with points and explicit answer spaces. Ask for reasoning. Mix derivations, proofs, counterexamples, debugging, code tracing, design choices, and unfamiliar applications as appropriate. Avoid trick wording and rote-only tests.

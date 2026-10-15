@@ -1,6 +1,6 @@
 ---
 name: study
-description: Explain and connect the user's notes, tutor advanced mathematics and programming foundations, or run active recall toward quantitative-development goals. Recall happens in chat.
+description: Explain and connect the user's notes, tutor advanced mathematics and programming foundations, or run active recall. Recall happens in chat.
 ---
 
 # Study
@@ -15,7 +15,7 @@ If either is unavailable, ask for its location; do not create a replacement.
 
 Read the practice folder's `CLAUDE.md`, `Profile.md`, and the notes the user asks about. Notes live next to the project they belong to (for example `chapter-NN/notes.md` in a learning project), or in `/home/geomar/Desktop/geomar-database/notes` when they belong to no project; resolve a named note against the working directory first. Recent test feedback in the practice folder (its "Next" sections) can help calibrate. Ask which topic or notes to use if unspecified. Notes are the user's own writing: read them, never edit them unless explicitly asked. Never assume access to missing conversations or infer competence from note ownership.
 
-The user's goal is quantitative development, with strong advanced-mathematics and programming foundations. Use recorded current goals and prerequisites to calibrate; do not impose a new curriculum or assume advanced readiness. Connect to numerical methods, probability, algorithms, performance, and finance when genuinely relevant—not as decoration.
+Use recorded prerequisites to calibrate; do not impose a new curriculum or assume advanced readiness. Connect to numerical methods, probability, algorithms, performance, and finance when genuinely relevant—not as decoration.
 
 ## Explain mode
 
