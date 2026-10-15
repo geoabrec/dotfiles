@@ -1,0 +1,6 @@
+{
+  "name": "source-guard",
+  "version": "0.1.0",
+  "description": "Extends a project's Edit denies on source files to shell commands, so learning-project code is only ever written by the user.",
+  "author": { "name": "Geomar Abreu" }
+}

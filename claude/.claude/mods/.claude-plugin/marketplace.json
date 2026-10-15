@@ -1,0 +1,11 @@
+{
+  "name": "local-mods",
+  "owner": { "name": "Geomar Abreu" },
+  "plugins": [
+    {
+      "name": "source-guard",
+      "source": "./source-guard",
+      "description": "Extends a project's Edit denies on source files to shell commands."
+    }
+  ]
+}
