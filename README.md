@@ -80,4 +80,6 @@ mv ~/.config/kitty/kitty.conf ~/dotfiles/kitty/.config/kitty/kitty.conf
 
 ## Credits
 
-The zsh config started from [radleylewis/zsh](https://github.com/radleylewis/zsh) (MIT).
+The zsh config started from [radleylewis/zsh](https://github.com/radleylewis/zsh) (MIT); its licence is kept in `zsh/.config/zsh/LICENSE`.
+
+
