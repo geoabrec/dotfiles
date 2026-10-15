@@ -94,12 +94,10 @@ They aren't pinned to versions; they follow each project's default branch. To up
 
 ## Tools it expects
 
-[`../packages.txt`](../packages.txt) lists them; the zsh section has starship, eza, bat, fzf, fd, ripgrep and zoxide. The config also calls:
+[`../packages.txt`](../packages.txt) lists them. Its zsh section has starship, eza, bat, fzf, fd, ripgrep, zoxide, lf (the `lf` function) and mpv (`stream`). From other sections, the config also uses:
 - nvim (`EDITOR`)
 - git and openssh (the SSH key block)
 - g++ from base-devel (`cr`)
-- lf (the `lf` function)
-- mpv (`stream`)
 
 ## Credits
 

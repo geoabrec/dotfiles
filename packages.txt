@@ -10,7 +10,7 @@ git
 openssh
 github-cli
 base-devel
-# zsh
+# zsh (lf: the lf function, mpv: the stream alias)
 zsh
 starship
 eza
@@ -19,6 +19,8 @@ fzf
 fd
 ripgrep
 zoxide
+lf
+mpv
 # tmux (TPM and its plugins are cloned with git)
 tmux
 # nvim: Mason installs the LSP servers and formatters (needs unzip, python);
