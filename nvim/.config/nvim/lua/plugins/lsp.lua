@@ -27,7 +27,8 @@ local servers = {
 
       if client.workspace_folders then
         local path = client.workspace_folders[1].name
-        if path ~= vim.fn.stdpath 'config' and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then return end
+        local config_dir = vim.uv.fs_realpath(vim.fn.stdpath 'config')
+        if path ~= config_dir and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then return end
       end
 
       local current_settings = client.config.settings --[[@as lspconfig.settings.lua_ls]]
