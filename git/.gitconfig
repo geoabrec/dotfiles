@@ -16,5 +16,6 @@
 	format = ssh
 [commit]
 	gpgsign = true
+	verbose = true
 [gpg "ssh"]
 	allowedSignersFile = ~/.ssh/allowed_signers
