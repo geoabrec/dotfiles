@@ -1,11 +1,5 @@
-# =========================================================
-# fzf
-# =========================================================
-
 # fd lists files faster than find and skips .gitignore'd ones; --hidden still includes dotfiles
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --strip-cwd-prefix'  # strip-cwd-prefix removes the leading ./ from results
-
-# Ctrl-T lists files the same way
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # One look for every fzf window: prompt on top, preview on the right
@@ -30,8 +24,7 @@ _fzf_file_no_hidden() {
   local cmd result
   cmd="${FZF_DEFAULT_COMMAND/--hidden /}"
   result=$(eval "${cmd:-find . -type f}" | fzf --preview "$_FZF_PREVIEW_CMD") \
-    && LBUFFER+="$result"  # LBUFFER is the text left of the cursor
+    && LBUFFER+="$result"
   zle reset-prompt
 }
-# Register the function as a widget so keys.zsh can bind it
 zle -N _fzf_file_no_hidden

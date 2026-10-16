@@ -20,8 +20,6 @@
   --code-font: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace;
 }
 
-/* Page */
-
 html {
   background: var(--bg);
   color: var(--fg);
@@ -34,8 +32,6 @@ body {
   padding: 3rem 1.5rem 6rem;
   overflow-wrap: break-word;
 }
-
-/* Headings */
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--fg-strong);
@@ -50,8 +46,6 @@ h4, h5, h6 { font-size: 1rem; color: var(--fg); }
 
 body > :first-child { margin-top: 0; }
 
-/* Text */
-
 p, ul, ol, blockquote, pre, table { margin: 0 0 1.1em; }
 
 a { color: var(--blue); text-decoration-color: var(--line); text-underline-offset: 0.2em; }
@@ -64,8 +58,6 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.2em 0; }
 
 img { max-width: 100%; }
 
-/* Lists */
-
 ul, ol { padding-left: 1.6em; }
 li { margin: 0.25em 0; }
 li > ul, li > ol { margin-bottom: 0; }
@@ -73,8 +65,6 @@ li::marker { color: var(--fg-muted); }
 
 ul.task-list { list-style: none; padding-left: 0.3em; }
 ul.task-list input { margin: 0 0.6em 0 0; accent-color: var(--yellow); }
-
-/* Quotes and callouts */
 
 blockquote, div.note, div.tip, div.important, div.warning, div.caution {
   padding: 0.1em 0 0.1em 1em;
@@ -99,13 +89,9 @@ div.important .title { color: var(--purple); }
 div.warning .title   { color: var(--yellow); }
 div.caution .title   { color: var(--red); }
 
-/* Tables */
-
 table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
 th, td { padding: 0.45em 0.8em; border: 1px solid var(--line); vertical-align: top; }
 th { color: var(--fg-strong); background: var(--bg-alt); text-align: left; }
-
-/* Code */
 
 code { font: 0.88em var(--code-font); }
 
@@ -141,12 +127,8 @@ code span.pp, code span.ot { color: var(--cyan); }
 code span.sc { color: var(--cyan); }
 code span.er, code span.al { color: var(--red); }
 
-/* Math */
-
 math { font-family: "Latin Modern Math", "STIX Two Math", "Noto Sans Math", math; font-size: 1.1em; }
 math[display="block"] { margin: 1.3em 0; font-size: 1.2em; }
-
-/* Footnotes */
 
 section.footnotes { margin-top: 3em; font-size: 0.9em; color: var(--fg-muted); }
 a.footnote-ref, a.footnote-back { text-decoration: none; }

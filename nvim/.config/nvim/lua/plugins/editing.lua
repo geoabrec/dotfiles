@@ -20,7 +20,6 @@ require('mini.ai').setup {
 
 require('mini.surround').setup()
 
--- Harpoon
 local harpoon = require 'harpoon'
 harpoon:setup()
 

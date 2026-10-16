@@ -2,9 +2,7 @@
 *.zwc
 .zcompdump*
 
-# machine-local zsh overrides
 zsh/.config/zsh/local.zsh
 
-# editor junk
 *.swp
 *~

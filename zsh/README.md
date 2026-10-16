@@ -114,4 +114,4 @@ The rest is mine:
 - `cr`, the short git aliases, `c` and `e`
 - the vi mode setup in `keys.zsh`
 - the SSH key block
-- the file layout and comments, from the [Plan 2 refactor](../docs/plan-2-zsh-refactor.md)
+- the file layout and comments

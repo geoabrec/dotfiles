@@ -22,7 +22,7 @@ Each top-level folder is a Stow *package* whose contents mirror `$HOME`: `zsh/.z
 | `waybar` | waybar bar and its auto-reload script |
 | `zsh` | `~/.zshenv` stub that sets `ZDOTDIR`, and the zsh config in `~/.config/zsh` |
 
-Also here: `install.sh` (links everything), `packages.txt` (what the configs need) and `docs/` (the plans this repo was built from).
+Also here: `install.sh` (links everything) and `packages.txt` (what the configs need).
 
 How Stow links things:
 - If the target folder doesn't exist, Stow links the whole folder ("folding"): `~/.config/nvim` → `~/dotfiles/nvim/.config/nvim`. New files in it land in the repo automatically.

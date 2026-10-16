@@ -1,7 +1,3 @@
-# =========================================================
-# Plugins
-# =========================================================
-
 # Plugins are downloaded data, not config, so they live outside the repo
 ZPLUGINDIR="$XDG_DATA_HOME/zsh/plugins"
 

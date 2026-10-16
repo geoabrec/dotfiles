@@ -11,7 +11,6 @@ vim.pack.add {
 require('mini.icons').setup()
 MiniIcons.mock_nvim_web_devicons()
 
--- Statusline
 ---@param fg string colour of the mode block
 local function mode_colors(fg)
   return {
@@ -42,7 +41,6 @@ require('lualine').setup {
   },
 }
 
--- Keymap hints
 require('which-key').setup {
   delay = 0,
   spec = {

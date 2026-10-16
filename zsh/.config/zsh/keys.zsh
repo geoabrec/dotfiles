@@ -1,7 +1,3 @@
-# =========================================================
-# Vi mode
-# =========================================================
-
 # zsh's built-in vi mode: no plugin, so nothing resets these bindings later
 bindkey -v
 
@@ -52,32 +48,22 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd '^E' edit-command-line
 
-# =========================================================
-# Custom bindings
-# =========================================================
-
-# Ctrl+Right / Ctrl+Left -> move one word (^[[1;5C / ^[[1;5D are the terminal escape codes)
 bindkey -M viins '^[[1;5C' forward-word
 bindkey -M viins '^[[1;5D' backward-word
 
 # Home, End and Delete. Unbound, their leading Esc would switch to normal mode and the
 # rest of the sequence would run as vi commands. kitty and tmux send different codes.
 for m in viins vicmd; do
-  bindkey -M $m '^[[H'  beginning-of-line  # Home in kitty
-  bindkey -M $m '^[[1~' beginning-of-line  # Home in tmux
-  bindkey -M $m '^[[F'  end-of-line        # End in kitty
-  bindkey -M $m '^[[4~' end-of-line        # End in tmux
-  bindkey -M $m '^[[3~' delete-char        # Delete in both
+  bindkey -M $m '^[[H'  beginning-of-line
+  bindkey -M $m '^[[1~' beginning-of-line
+  bindkey -M $m '^[[F'  end-of-line
+  bindkey -M $m '^[[4~' end-of-line
+  bindkey -M $m '^[[3~' delete-char
 done
 
-# Ctrl+F -> fzf file picker (no hidden files)
 bindkey -M viins '^F' _fzf_file_no_hidden
-
-# Ctrl+\ -> toggle autosuggestions (useful for screen recordings)
 bindkey -M viins '^\' autosuggest-toggle
 
-# Up/Down, and k/j in normal mode -> history search by substring
-# (^[[A/^[[B are the up/down arrow escape codes)
 bindkey -M viins '^[[A' history-substring-search-up
 bindkey -M viins '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up

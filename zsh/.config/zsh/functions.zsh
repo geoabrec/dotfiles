@@ -1,10 +1,6 @@
-# =========================================================
-# Navigation
-# =========================================================
-
 # lf runs as a child process and can't change this shell's directory, so it writes its
 # last directory to a temp file and the shell cd's there when lf quits
-lf() { # zsh follow lf navigation
+lf() {
     tmp=$(mktemp)
     command lf -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
@@ -14,12 +10,8 @@ lf() { # zsh follow lf navigation
     fi
 }
 
-# =========================================================
-# C++
-# =========================================================
-
 # Binaries go to <repo>/build/, mirroring the source path, so they stay out of the source folders
-cr() { # compile & run C++ with the learncpp flags: cr file.cpp | cr folder/
+cr() {
     local src=${1%/} root out rel
     root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
     rel=${${src:a}#$root/}
