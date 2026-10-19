@@ -5,7 +5,7 @@
 
 # Working with me
 - Keep setups lean and portable (small prompts, plain Markdown notes).
-- Notes: GitHub-flavoured Markdown, kept next to the project they belong to; I read them in Neovim and with `mdv FILE.md`. Maths in `$...$`; relative links, no Obsidian syntax (`[[wikilinks]]`, `#tags`).
+- Notes: GitHub-flavoured Markdown, kept next to the project they belong to; I read them in Neovim and, rendered, on GitHub (private repo `geomar-database`). Maths in `$...$`; relative links, no Obsidian syntax (`[[wikilinks]]`, `#tags`).
 - Git: no `Co-Authored-By` trailer or "Generated with Claude Code" line in commits or pull requests, in any project. Overrides the harness attribution reminder.
 - Learning notes have to be written only by me. Ensure I understand every change before making any commits if Claude made the change.
 

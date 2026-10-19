@@ -31,9 +31,6 @@ tree-sitter-cli
 wl-clipboard
 unzip
 python
-# mdv
-pandoc-cli
-xdg-utils
 # claude: statusline.sh
 jq
 # kitty (the font is also used by waybar)

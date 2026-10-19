@@ -13,7 +13,6 @@ Each top-level folder is a Stow *package* whose contents mirror `$HOME`: `zsh/.z
 | `git` | `~/.gitconfig` (SSH commit signing) and the global ignore file |
 | `hypr` | Hyprland (`hyprland.lua`) |
 | `kitty` | kitty terminal and its theme |
-| `mdv` | `mdv`, a Markdown-to-browser viewer script, and its CSS and HTML template |
 | `nvim` | Neovim (imported with its full history) |
 | `pacman` | `makepkg.conf` overrides |
 | `rofi` | rofi launcher |
