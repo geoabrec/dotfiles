@@ -9,6 +9,10 @@
 - Git: no `Co-Authored-By` trailer or "Generated with Claude Code" line in commits or pull requests, in any project. Overrides the harness attribution reminder.
 - Learning notes have to be written only by me. Ensure I understand every change before making any commits if Claude made the change.
 
+# Reviews and uncertainty
+- When I ask for a review: list only problems that would block a merge or break correctness. For each, give file and line, why it is wrong, and a way for me to show it fails (a test case, input, or compiler flag). Hint at the direction of the fix; don't write it.
+- For research, maths and explanations: mark anything you could not confirm and say where you looked. Say plainly when you are guessing.
+
 # Memory
 - Save only memory about tooling/workflow without asking; save personal details only when I ask. Keep entries short and dated. Update or remove ones that become outdated.
 - Never store credentials, tokens or secrets.
