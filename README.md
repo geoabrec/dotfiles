@@ -52,7 +52,6 @@ How Stow links things:
 - Restore `~/.ssh` (keys and `allowed_signers`) and put `AddKeysToAgent yes` in `~/.ssh/config`.
 - Start the SSH agent: `systemctl --user enable --now ssh-agent.socket`.
 - In tmux, press `prefix + I` to install the plugins.
-- Create `~/.claude/about-me.md`: personal context that `CLAUDE.md` imports and that stays out of git. Include the lines naming the practice folder and the notes folder; the `study` and `test` skills read them.
 - Set the themes, which their GUI tools own and so aren't in the repo:
   - GTK (with `nwg-look`): theme `Adwaita-dark`, icons `Adwaita`, font `Adwaita Sans 11`
   - Qt (with `qt6ct`): style `Fusion`, colour scheme `darker`
