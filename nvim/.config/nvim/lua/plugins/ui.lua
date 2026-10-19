@@ -71,4 +71,13 @@ vim.api.nvim_set_hl(0, 'QfFormatterLineNr', { fg = '#d6d6d6' })
 
 require('render-markdown').setup {
   latex = { enabled = false },
+  render_modes = true,
+  pipe_table = {
+    enabled = true,
+    preset = 'round',
+    cell = 'padded',
+    padding = 2,
+    border_enabled = true,
+    border_virtual = false,
+  },
 }
