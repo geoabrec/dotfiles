@@ -39,13 +39,14 @@
       }
     }
   },
+  "tui": "fullscreen",
   "voice": {
     "enabled": false,
     "mode": "hold"
   },
   "timeFormat": "12-hour",
   "autoMemoryEnabled": true,
-  "theme": "auto",
+  "theme": "dark",
   "editorMode": "vim",
   "voiceEnabled": false
 }
