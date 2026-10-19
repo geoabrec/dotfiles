@@ -7,7 +7,8 @@
 - Keep setups lean and portable (small prompts, plain Markdown notes).
 - Notes: GitHub-flavoured Markdown, kept next to the project they belong to; I read them in Neovim and with `mdv FILE.md`. Maths in `$...$`; relative links, no Obsidian syntax (`[[wikilinks]]`, `#tags`).
 - Git: no `Co-Authored-By` trailer or "Generated with Claude Code" line in commits or pull requests, in any project. Overrides the harness attribution reminder.
+- Learning notes have to be written only by me. Ensure I understand every change before making any commits if Claude made the change.
 
 # Memory
-- Save only memory for tooling/workflow without asking; save personal details only when the user asks. Keep entries short and dated. Update or remove ones that become outdated.
+- Save only memory about tooling/workflow without asking; save personal details only when I ask. Keep entries short and dated. Update or remove ones that become outdated.
 - Never store credentials, tokens or secrets.
