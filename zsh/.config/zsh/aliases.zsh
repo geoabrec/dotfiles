@@ -1,11 +1,4 @@
 alias g='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gr='git restore'
-alias grm='git remote'
-alias gp='git push'
-alias gpl='git pull'
-alias gpo='git push origin'
 
 alias c='clear'
 alias e='exit'
