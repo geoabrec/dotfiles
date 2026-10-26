@@ -20,18 +20,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("waypaper --restore")
 end)
 
--- VibeTyper
-hl.window_rule({
-	match = { class = "^(vibe-typer)$" },
-	float = true,
-	pin = true,
-	move = "(monitor_w-window_w)/2 monitor_h-window_h-20",
-	border_size = 0,
-	no_shadow = true,
-	no_blur = true,
-	rounding = 0,
-})
-
 hl.config({
 	general = {
 		gaps_in = 5,
