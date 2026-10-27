@@ -11,7 +11,7 @@ local browser = "librewolf"
 local launcher = "rofi -no-default-config -show drun -show-icons"
 local runner = "rofi -show run"
 local games = "steam"
-local ai = "t3code-nightly"
+local ai = "t3code"
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("waybar")
