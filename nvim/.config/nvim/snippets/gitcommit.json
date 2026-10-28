@@ -1,0 +1,7 @@
+{
+  "git-claude-author": {
+    "prefix": "cab",
+    "body": ["Co-Authored-By: Claude Code <noreply@anthropic.com>"],
+    "description": "Claude Trailer"
+  }
+}
