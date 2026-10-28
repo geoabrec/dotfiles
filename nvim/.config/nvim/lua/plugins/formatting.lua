@@ -8,6 +8,7 @@ require('conform').setup {
       python = true,
       c = true,
       cpp = true,
+      json = true,
     }
     if enabled_filetypes[vim.bo[bufnr].filetype] then
       return { timeout_ms = 500 }
@@ -21,6 +22,7 @@ require('conform').setup {
   formatters_by_ft = {
     c = { 'clang-format' },
     cpp = { 'clang-format' },
+    json = { 'clang-format' },
     python = { 'ruff_fix', 'ruff_organize_imports', 'ruff_format' },
   },
 }

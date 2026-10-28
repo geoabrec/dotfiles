@@ -13,6 +13,7 @@ require('mason-tool-installer').setup {
     'ruff',
     'lua-language-server',
     'stylua',
+    'json-lsp',
   },
 }
 
@@ -20,6 +21,7 @@ require('mason-tool-installer').setup {
 local servers = {
   clangd = {},
   basedpyright = {},
+  jsonls = {},
   stylua = {},
   lua_ls = {
     on_init = function(client)

@@ -12,7 +12,7 @@ vim.pack.add { { src = 'https://github.com/nvim-treesitter/nvim-treesitter', ver
 
 local treesitter = require 'nvim-treesitter'
 
-treesitter.install { 'bash', 'c', 'cpp', 'diff', 'latex', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'python', 'query', 'vim', 'vimdoc' }
+treesitter.install { 'bash', 'c', 'cpp', 'diff', 'latex', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'python', 'query', 'vim', 'vimdoc', 'json' }
 
 ---@param buf integer
 ---@param language string
