@@ -6,7 +6,8 @@
 # Working with me
 - Keep setups lean and portable (small prompts, plain Markdown notes).
 - Notes: GitHub-flavoured Markdown, kept next to the project they belong to; I read them in Neovim and, rendered, on GitHub (private repo `geomar-database`). Maths in `$...$`; relative links, no Obsidian syntax (`[[wikilinks]]`, `#tags`).
-- Git: no `Co-Authored-By` trailer or "Generated with Claude Code" line in commits or pull requests, in any project. Overrides the harness attribution reminder.
+- Git, learning projects: each sets `"attribution": { "commit": "", "pr": "" }` in `.claude/settings.json`, so Claude adds no trailer. When I commit a file Claude changed, I add `Co-Authored-By: Claude Code <noreply@anthropic.com>`; remind me when a commit includes one.
+- Git, other projects: follow the project's AI-disclosure policy. With no policy, keep Claude Code's default `Co-Authored-By` attribution.
 - Learning notes have to be written only by me. Ensure I understand every change before making any commits if Claude made the change.
 
 # Reviews and uncertainty
