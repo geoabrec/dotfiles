@@ -2,7 +2,10 @@
   "name": "git-snippets",
   "contributes": {
     "snippets": [
-      { "language": "gitcommit", "path": "./gitcommit.json" }
+      {
+        "language": "gitcommit",
+        "path": "./gitcommit.json"
+      }
     ]
   }
 }
