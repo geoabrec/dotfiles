@@ -21,6 +21,7 @@ ripgrep
 zoxide
 lf
 mpv
+lazygit
 # tmux (TPM and its plugins are cloned with git)
 tmux
 # nvim: Mason installs the LSP servers and formatters (needs unzip, python);
