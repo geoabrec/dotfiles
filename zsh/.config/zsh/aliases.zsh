@@ -1,4 +1,5 @@
 alias g='git status'
+alias lg='lazygit'
 
 alias c='clear'
 alias e='exit'
