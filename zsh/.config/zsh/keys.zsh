@@ -62,7 +62,7 @@ for m in viins vicmd; do
 done
 
 bindkey -M viins '^F' _fzf_file_no_hidden
-bindkey -M viins '^\' autosuggest-toggle
+# bindkey -M viins '^\' autosuggest-toggle
 
 bindkey -M viins '^[[A' history-substring-search-up
 bindkey -M viins '^[[B' history-substring-search-down
