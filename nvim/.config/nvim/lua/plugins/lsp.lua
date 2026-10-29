@@ -14,6 +14,8 @@ require('mason-tool-installer').setup {
     'lua-language-server',
     'stylua',
     'json-lsp',
+    -- linters
+    'markdownlint',
   },
 }
 
