@@ -18,7 +18,7 @@ Calibrate from the notes and the user's answers; do not impose a new curriculum 
 - Include intuition, precise definitions, derivations or proofs where appropriate, and worked examples and counterexamples.
 - In programming, distinguish language guarantees from implementation details; in mathematics, distinguish proof from empirical evidence.
 - Surface misconceptions and contradictions in source notes. Notes are not infallible.
-- Verify consequential claims against a primary source (the lesson, cppreference, the ISO draft for C++) instead of memory, following the uncertainty rule in the user-level `CLAUDE.md`. Note anything that depends on the language standard version.
+- Verify consequential claims against a primary source (the lesson, cppreference, the ISO draft for C++) instead of memory, following the user-level uncertainty rule. Note anything that depends on the language standard version.
 - Offer a small understanding check. If the user is solving an exercise, prefer hints and questions unless a full solution is requested.
 - Allow challenging material without skipping necessary foundations.
 
@@ -30,6 +30,6 @@ When the user wants recall questions to keep, give them in chat for the user to 
 
 ## Persistence boundaries
 
-Explain and quiz in conversation by default. Invoking this skill does not authorize saving notes, tests, or progress files. Assistant memory follows the user-level `CLAUDE.md` memory rule.
+Explain and quiz in conversation by default. Invoking this skill does not authorize saving notes, tests, or progress files. Assistant memory follows the user-level memory rule.
 
 For a mock examination and formal grading, use the `test` skill instead of creating a second testing workflow here. For a bug in the user's own code, use `debug`. When the user says an explanation did not land, `reexplain` is the short form.

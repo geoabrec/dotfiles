@@ -1,6 +1,6 @@
 ---
 name: reexplain
-description: Use when the user says the last message did not land, asks for simpler words, or invokes /reexplain. Re-explains it in plain words with their own vocabulary, then checks understanding with one question.
+description: Use when the user says the last message did not land, asks for simpler words, or invokes this skill. Re-explains it in plain words with their own vocabulary, then checks understanding with one question.
 disable-model-invocation: true
 ---
 

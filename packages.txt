@@ -34,6 +34,9 @@ unzip
 python
 # claude: statusline.sh
 jq
+# codex (source-guard's hook is TypeScript; node runs it directly from 22.18)
+openai-codex
+nodejs-lts-jod
 # kitty (the font is also used by waybar)
 kitty
 ttf-jetbrains-mono-nerd

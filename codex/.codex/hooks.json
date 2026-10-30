@@ -1,0 +1,16 @@
+{
+  "description": "Stops agents writing a learning project's source files.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|apply_patch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings ~/.agents/source-guard/hook.ts"
+          }
+        ]
+      }
+    ]
+  }
+}

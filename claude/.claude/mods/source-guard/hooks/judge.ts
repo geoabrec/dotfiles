@@ -22,6 +22,10 @@ const INLINE_CODE = new Set(['python', 'python3', 'perl', 'ruby', 'node', 'lua',
 const COPIERS = new Set(['cp', 'mv', 'install', 'ln'])
 const READ_ONLY_PATCH = /^--(?:check|stat|numstat|summary|dry-run)$/
 
+export const RULE =
+  'This project protects its source files: the user writes their own code. ' +
+  'Do not route around this; explain or give a hint instead.'
+
 /**
  * The extensions a project's settings deny editing, read from rules shaped
  * like `Edit(**\/*.cpp)`. None means the project asked for no protection.
@@ -53,6 +57,18 @@ function normalize(path: string): string {
   return '/' + out.join('/')
 }
 
+// An absolute path outside the project (a scratch file) is nobody's source.
+// Anything else (relative, `~`, `$VAR`, a glob) is assumed to be.
+const isOutsideRoot = (path: string, root: string) =>
+  path.startsWith('/') && !path.startsWith('//') && !(normalize(path) + '/').startsWith(root + '/')
+
+/** Whether a path a tool names outright is protected source. */
+export function protects(path: string, policy: Policy): boolean {
+  const name = path.toLowerCase()
+
+  return policy.extensions.some(ext => name.endsWith(`.${ext}`)) && !isOutsideRoot(path, normalize(policy.root))
+}
+
 /**
  * Returns a sentence saying why the command must not run, or undefined when
  * the guard has no objection.
@@ -66,10 +82,7 @@ export function judge(command: string, policy: Policy): string | undefined {
   const sourceMention = new RegExp(`[\\w~$@%+{}*?\\[\\]/.-]*\\.(?:${exts})(?![\\w])`, 'gi')
   const root = normalize(policy.root)
 
-  // An absolute path outside the project (a scratch file) is nobody's
-  // source. Anything else (relative, `~`, `$VAR`, a glob) is assumed to be.
-  const isOutside = (path: string) =>
-    path.startsWith('/') && !path.startsWith('//') && !(normalize(path) + '/').startsWith(root + '/')
+  const isOutside = (path: string) => isOutsideRoot(path, root)
   const isSource = (word: string) => {
     const path = unquote(word)
 
@@ -79,14 +92,10 @@ export function judge(command: string, policy: Policy): string | undefined {
   const named = command.match(sourceMention) ?? []
   const touched = named.filter(isSource)
 
-  const rule =
-    'This project protects its source files: the user writes their own code. ' +
-    'Do not route around this; explain or give a hint instead.'
-
   // 1. Redirects, wherever they sit (a nested `sh -c "..."` included).
   const redirect = /(?<![-=<>])(?:&|\d)?>{1,2}\|?[ \t]*("[^"]*"|'[^']*'|[^\s;&|<>()]+)/g
   for (const [, target = ''] of command.matchAll(redirect)) {
-    if (isSource(target)) return `the redirect would write ${unquote(target)}. ${rule}`
+    if (isSource(target)) return `the redirect would write ${unquote(target)}. ${RULE}`
   }
 
   // 2. Commands that write files, one simple command at a time.
@@ -102,22 +111,22 @@ export function judge(command: string, policy: Policy): string | undefined {
       const isInPlaceSed = verb === 'sed' && flags.some(f => /^-[a-zA-Z]*i/.test(f) || f.startsWith('--in-place'))
       const isInPlacePerl = verb === 'perl' && flags.some(f => /^-[a-zA-Z]*i/.test(f))
       if ((isInPlaceSed || isInPlacePerl) && touched.length > 0) {
-        return `${verb} would edit ${touched[0]} in place. ${rule}`
+        return `${verb} would edit ${touched[0]} in place. ${RULE}`
       }
 
       const isFormatting = verb === 'clang-format' && flags.some(f => /^--?i$/.test(f))
       if (isFormatting && (files.length === 0 || !files.every(isOutside))) {
-        return `clang-format -i rewrites source files. Use --dry-run to check formatting. ${rule}`
+        return `clang-format -i rewrites source files. Use --dry-run to check formatting. ${RULE}`
       }
 
       if (verb === 'tee' || verb === 'truncate') {
         const hit = files.find(isSource)
-        if (hit !== undefined) return `${verb} would overwrite ${hit}. ${rule}`
+        if (hit !== undefined) return `${verb} would overwrite ${hit}. ${RULE}`
       }
 
       if (verb === 'dd') {
         const hit = args.find(arg => arg.startsWith('of=') && isSource(arg.slice(3)))
-        if (hit !== undefined) return `dd would overwrite ${hit.slice(3)}. ${rule}`
+        if (hit !== undefined) return `dd would overwrite ${hit.slice(3)}. ${RULE}`
       }
 
       // Moving the user's own source around inside the project is fine;
@@ -127,28 +136,28 @@ export function judge(command: string, policy: Policy): string | undefined {
         const sources = files.slice(0, -1)
         const makesSource = isSourceName.test(target) || sources.some(s => isSourceName.test(s))
         if (makesSource && !isOutside(target) && !sources.every(isSource)) {
-          return `${verb} would bring a file in as project source (${target}). ${rule}`
+          return `${verb} would bring a file in as project source (${target}). ${RULE}`
         }
       }
 
       if ((verb === 'curl' || verb === 'wget') && named.length > 0) {
-        return `${verb} would download a source file. ${rule}`
+        return `${verb} would download a source file. ${RULE}`
       }
 
       const isPatching =
         verb === 'patch' || (verb === 'git' && (args[0] === 'apply' || args[0] === 'am'))
       if (isPatching && !flags.some(f => READ_ONLY_PATCH.test(f))) {
-        return `a patch can rewrite source files and the guard cannot see inside it. ${rule}`
+        return `a patch can rewrite source files and the guard cannot see inside it. ${RULE}`
       }
 
       if (EDITORS.has(verb)) {
         const hit = files.find(isSource)
-        if (hit !== undefined) return `${verb} would open ${hit} for editing. ${rule}`
+        if (hit !== undefined) return `${verb} would open ${hit} for editing. ${RULE}`
       }
 
       const hasInlineCode = INLINE_CODE.has(verb) && flags.some(f => /^-[a-zA-Z]*[ce]$/.test(f))
       if (hasInlineCode && touched.length > 0) {
-        return `inline ${verb} code names ${touched[0]}; read it with the Read tool instead. ${rule}`
+        return `inline ${verb} code names ${touched[0]}; read the file directly instead. ${RULE}`
       }
 
       if (COMPILERS.test(verb)) {

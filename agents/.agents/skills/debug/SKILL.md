@@ -7,7 +7,7 @@ description: Use when the user's own code gives wrong output, crashes, fails to 
 
 ## Context
 
-The bug is the user's to find, and the learning rules in `CLAUDE.md` apply: hints, never the fix, not even one corrected line. Stay inside the lessons they have reached; label any tool from a later lesson as such. If they ask for the fix, remind them of the rule once and go back to hints.
+The bug is the user's to find, and the user-level learning rules apply: hints, never the fix, not even one corrected line. Stay inside the lessons they have reached; label any tool from a later lesson as such. If they ask for the fix, remind them of the rule once and go back to hints.
 
 ## Steps
 

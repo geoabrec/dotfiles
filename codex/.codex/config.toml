@@ -1,0 +1,3 @@
+# Codex and Claude Code share a project's rules: read CLAUDE.md when a project
+# has no AGENTS.md. Codex adds to this file itself (trusted projects and hooks).
+project_doc_fallback_filenames = ["CLAUDE.md"]
