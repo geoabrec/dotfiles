@@ -148,6 +148,19 @@ hl.gesture({
 local mainMod = "SUPER"
 local secondMod = "SUPER + SHIFT"
 
+-- screenshot tooling
+local ssDir = os.getenv("HOME") .. "/Pictures/Screenshots"
+
+hl.on("hyprland.start", function()
+	hl.exec_cmd("mkdir -p " .. ssDir)
+end)
+
+-- Region → clipboard
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
+
+-- Full screen → clipboard
+hl.bind(secondMod .. " + V", hl.dsp.exec_cmd("grim - | wl-copy"))
+
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
