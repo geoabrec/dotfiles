@@ -54,7 +54,8 @@ playerctl
 nemo
 librewolf
 steam
-# hypr: AUR (wallpaper restore, cursor theme)
+# hypr: AUR (wallpaper restore, cursor theme, T3 Code)
+t3code-bin
 waypaper
 bibata-cursor-theme-bin
 # fastfetch
