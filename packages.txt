@@ -47,13 +47,16 @@ bluetui
 btop
 # rofi
 rofi
-# hypr: session, lock, audio, brightness, media keys, apps bound to keys
+# hypr: session, lock, audio, brightness, media keys, screenshots, apps bound
+# to keys (screenshots also use wl-clipboard, listed under nvim)
 hyprland
 hyprpolkitagent
 swaylock
 wireplumber
 brightnessctl
 playerctl
+grim
+slurp
 nemo
 librewolf
 steam

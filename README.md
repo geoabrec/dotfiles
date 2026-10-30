@@ -1,83 +1,62 @@
 # dotfiles
 
-My Arch Linux / Hyprland configuration, linked into place with GNU Stow.
+My Arch Linux/Hyprland setup. Each folder is a [GNU Stow](https://www.gnu.org/software/stow/) package that mirrors `$HOME`: `nvim/.config/nvim` links to `~/.config/nvim`. Editing a linked file edits the repo.
 
-Each top-level folder is a Stow *package* whose contents mirror `$HOME`: `zsh/.zshenv` becomes `~/.zshenv`, `nvim/.config/nvim/` becomes `~/.config/nvim`. The files live here, under git; `$HOME` only holds symlinks to them, so editing a config edits the repo.
+## Install
 
-## Layout
+Install `yay` (AUR: `yay-bin`) first.
 
-| Package | Configures |
-| --- | --- |
-| `claude` | Claude Code: `CLAUDE.md`, settings, status line, keybindings, the `study` and `test` skills, a local mod |
-| `fastfetch` | fastfetch system summary |
-| `git` | `~/.gitconfig` (SSH commit signing) and the global ignore file |
-| `hypr` | Hyprland (`hyprland.lua`) |
-| `kitty` | kitty terminal and its theme |
-| `nvim` | Neovim (imported with its full history) |
-| `pacman` | `makepkg.conf` overrides |
-| `rofi` | rofi launcher |
-| `starship` | starship prompt (`~/.config/starship.toml`), used by zsh and the Claude Code status line |
-| `tmux` | tmux (plugins via TPM) |
-| `waybar` | waybar bar and its auto-reload script |
-| `zsh` | `~/.zshenv` stub that sets `ZDOTDIR`, and the zsh config in `~/.config/zsh` |
+```sh
+git clone https://github.com/geoabrec/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+grep -v '^#' packages.txt | yay -S --needed -
+./install.sh
+```
 
-Also here: `install.sh` (links everything) and `packages.txt` (what the configs need).
-
-How Stow links things:
-- If the target folder doesn't exist, Stow links the whole folder ("folding"): `~/.config/nvim` → `~/dotfiles/nvim/.config/nvim`. New files in it land in the repo automatically.
-- If the target folder already exists (like `~/.claude`), Stow links file by file.
-- Stow never overwrites real files; it stops and reports a conflict instead.
-- It skips `README.*`, `LICENSE.*` and `COPYING` at a package's top level, and `.git` and `.gitignore` anywhere.
-
-## Install on a new machine
-
-1. Install `yay` (AUR: `yay-bin`), then the packages:
-   ```sh
-   grep -v '^#' packages.txt | yay -S --needed -
-   ```
-2. Clone the repo (log in with `gh auth login` only if you'll push; `.gitconfig` uses gh for GitHub credentials):
-   ```sh
-   git clone https://github.com/geoabrec/dotfiles.git ~/dotfiles
-   ```
-3. Link everything:
-   ```sh
-   cd ~/dotfiles && ./install.sh
-   ```
-   It does a dry run first and stops if a real file is in the way. Move that file aside (or into the repo) and run it again. It is safe to re-run.
-4. Do the one-time steps below; `install.sh` prints them too.
+`install.sh` is safe to re-run. If a real file is in the way, it stops and names it. Move the file aside or into the repo, then run it again.
 
 ## One-time steps
 
-- Restore `~/.ssh` (keys and `allowed_signers`) and put `AddKeysToAgent yes` in `~/.ssh/config`.
-- Start the SSH agent: `systemctl --user enable --now ssh-agent.socket`.
-- In tmux, press `prefix + I` to install the plugins.
-- Set the themes, which their GUI tools own and so aren't in the repo:
-  - GTK (with `nwg-look`): theme `Adwaita-dark`, icons `Adwaita`, font `Adwaita Sans 11`
-  - Qt (with `qt6ct`): style `Fusion`, colour scheme `darker`
-  - Cursor: `Bibata-Modern-Ice` at size 24, the same name everywhere: in `nwg-look` (GTK), and as `XCURSOR_THEME` and `XCURSOR_SIZE` in `/etc/environment`. Hyprland also sets it on start.
+- **SSH:** restore `~/.ssh` (keys and `allowed_signers`), put `AddKeysToAgent yes` in `~/.ssh/config`, and run `systemctl --user enable --now ssh-agent.socket`.
+- **GitHub:** run `gh auth login` before you push.
+- **tmux:** press `prefix + I` to install the plugins.
+- **GTK (`nwg-look`):** theme `Adwaita-dark`, icons `Adwaita`, font `Adwaita Sans 11`.
+- **Qt (`qt6ct`):** style `Fusion`, colour scheme `darker`.
+- **Cursor:** `Bibata-Modern-Ice` at size 24, in `nwg-look` and as `XCURSOR_THEME` and `XCURSOR_SIZE` in `/etc/environment`.
+- **Claude Code:** install it with its own installer, not pacman.
+- **Codex:** run `codex login`, then use `/hooks` in Codex to trust `source-guard`. The guard stays off until you do. To test it, ask Codex to run `echo x > t.cpp` in learncpp. It must be refused.
 
-## Adding a new config
+## Packages
 
-1. Create the package with the same path it has under `~`, and move the file in:
-   ```sh
-   mkdir -p ~/dotfiles/foo/.config/foo
-   mv ~/.config/foo/foo.conf ~/dotfiles/foo/.config/foo/
-   ```
-2. Add `foo` to `PACKAGES` in `install.sh`, run `./install.sh`, and commit.
+Each package is named after what it configures. The AI setup splits into three:
 
-## When a link is replaced by a copy
+| Package | Holds |
+| --- | --- |
+| `agents` | Shared rules (`AGENTS.md`), skills and the `source-guard` hook |
+| `claude` | Claude Code settings, status line, keybindings and `source-guard` mod |
+| `codex` | Codex config and `source-guard` hook setup |
 
-Some apps save a file by writing a new one in its place, which turns the symlink into a plain file. The repo then stops seeing changes. kitty's theme picker and Claude Code's `/config` are likely to do this.
+## Add a config
 
-`./install.sh check` lists every file that is missing or no longer links into the repo, and prints only `OK` otherwise. To fix one, move the copy over the repo file, run `./install.sh`, and review it with `git diff`:
+```sh
+mkdir -p ~/dotfiles/foo/.config/foo
+mv ~/.config/foo/foo.conf ~/dotfiles/foo/.config/foo/
+```
+
+Add `foo` to `PACKAGES` in `install.sh`, run `./install.sh`, and commit.
+
+If the app also writes data to that folder, add the folder to the `mkdir -p` list in `install.sh`. Otherwise Stow links the whole folder and the data lands in the repo.
+
+## Repair a replaced link
+
+Some apps save by replacing the link with a plain file, such as kitty's theme picker and Claude Code's `/config`. `./install.sh check` lists those files. To repair one:
 
 ```sh
 mv ~/.config/kitty/kitty.conf ~/dotfiles/kitty/.config/kitty/kitty.conf
 ./install.sh
+git diff
 ```
 
 ## Credits
 
-The zsh config started from [radleylewis/zsh](https://github.com/radleylewis/zsh) (MIT); its licence is kept in `zsh/.config/zsh/LICENSE`.
-
-
+The zsh config started from [radleylewis/zsh](https://github.com/radleylewis/zsh) (MIT). Its licence is in `zsh/.config/zsh/LICENSE`.
