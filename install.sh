@@ -39,7 +39,7 @@ install() {
     # their history and caches into the repo.
     mkdir -p "$HOME/.config" "$HOME/.local/bin" "$HOME/.local/state/zsh" \
              "$HOME/.cache/zsh" "$HOME/.claude/skills" "$HOME/.agents/skills" \
-             "$HOME/.codex"
+             "$HOME/.codex" "$HOME/.local/share/applications"
 
     # Dry run first: Stow never overwrites real files, it reports them instead.
     local out
