@@ -25,6 +25,7 @@ grep -v '^#' packages.txt | yay -S --needed -
 - **Cursor:** `Bibata-Modern-Ice` at size 24, in `nwg-look` and as `XCURSOR_THEME` and `XCURSOR_SIZE` in `/etc/environment`.
 - **Claude Code:** install it with its own installer, not pacman.
 - **Codex:** run `codex login`, then use `/hooks` in Codex to trust `source-guard`. The guard stays off until you do. To test it, ask Codex to run `echo x > t.cpp` in learncpp. It must be refused.
+- **T3 Code:** download `T3-Code-<version>-x86_64.AppImage` from the [latest release](https://github.com/pingdotgg/t3code/releases/latest) to `~/.local/bin/t3code` and run `chmod +x` on it. Keep that filename: `Super+C` runs `t3code`, and the in-app updater renames a file with a version in its name. Rofi lists the app only if you add a desktop entry to `~/.local/share/applications/`, because the app's own entry is hidden.
 
 ## Packages
 
