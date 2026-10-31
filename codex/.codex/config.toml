@@ -1,3 +1,17 @@
 # Codex and Claude Code share a project's rules: read CLAUDE.md when a project
 # has no AGENTS.md. Codex adds to this file itself (trusted projects and hooks).
 project_doc_fallback_filenames = ["CLAUDE.md"]
+
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+approvals_reviewer = "auto_review"
+model_reasoning_effort = "medium"
+
+[features]
+memories = true
+
+[tui]
+screen_reader_detection_done = true
+vim_mode_default = true
+alternate_screen = "always"
+status_line = ["model-with-reasoning", "git-branch", "context-used"]
