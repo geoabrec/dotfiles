@@ -19,11 +19,13 @@
   `#tags`).
 - Git, learning projects: agents add no trailer (Claude Code: each project sets
   `"attribution": { "commit": "", "pr": "" }` in `.claude/settings.json`). When
-  I commit a file an agent changed, I add a `Co-Authored-By` line naming that
-  agent (Claude Code: `Co-Authored-By: Claude Code <noreply@anthropic.com>`);
+  I commit a file an agent changed, I add the agent's `Co-Authored-By` line;
   remind me when a commit includes one.
 - Git, other projects: follow the project's AI-disclosure policy. With no
-  policy, keep the agent's default `Co-Authored-By` attribution.
+  policy, the agent adds its `Co-Authored-By` line.
+- A `Co-Authored-By` line names the agent, never the model. Use one of these:
+  - `Co-Authored-By: Claude Code <noreply@anthropic.com>`
+  - `Co-Authored-By: Codex <noreply@openai.com>`
 - Learning notes have to be written only by me. Ensure I understand every change
   before making any commits if an agent made the change.
 
