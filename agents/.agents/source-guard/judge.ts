@@ -1,1 +1,0 @@
-../../../claude/.claude/mods/source-guard/hooks/judge.ts

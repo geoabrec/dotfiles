@@ -5,7 +5,7 @@
 set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PACKAGES=(agents claude codex fastfetch git hypr kitty nvim pacman rofi starship tmux waybar zsh)
+PACKAGES=(claude fastfetch git hypr kitty nvim pacman rofi starship tmux waybar zsh)
 
 stow_all() { stow -d "$DOTFILES" -t "$HOME" "$@" "${PACKAGES[@]}"; }
 
@@ -38,8 +38,7 @@ install() {
     # Otherwise Stow links the whole folder ("folding") and apps would write
     # their history and caches into the repo.
     mkdir -p "$HOME/.config" "$HOME/.local/bin" "$HOME/.local/state/zsh" \
-             "$HOME/.cache/zsh" "$HOME/.claude/skills" "$HOME/.agents/skills" \
-             "$HOME/.codex" "$HOME/.local/share/applications"
+             "$HOME/.cache/zsh" "$HOME/.claude/skills"
 
     # Dry run first: Stow never overwrites real files, it reports them instead.
     local out

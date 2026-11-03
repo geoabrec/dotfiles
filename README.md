@@ -32,24 +32,12 @@ it. Move the file aside or into the repo, then run it again.
 - **Cursor:** `Bibata-Modern-Ice` at size 24, in `nwg-look` and as
   `XCURSOR_THEME` and `XCURSOR_SIZE` in `/etc/environment`.
 - **Claude Code:** install it with its own installer, not pacman.
-- **Codex:** run `codex login`, then use `/hooks` in Codex to trust
-  `source-guard`. The guard stays off until you do. To test it, ask Codex to run
-  `echo x > t.cpp` in learncpp. It must be refused.
-- **T3 Code:** download `T3-Code-<version>-x86_64.AppImage` from the
-  [latest release](https://github.com/pingdotgg/t3code/releases/latest) to
-  `~/.local/bin/t3code` and run `chmod +x` on it. Keep that filename: `Super+C`
-  runs `t3code`, and the in-app updater renames a file with a version in its
-  name.
 
 ## Packages
 
-Each package is named after what it configures. The AI setup splits into three:
-
-|Package|Holds|
-|---|---|
-|`agents`|Shared rules (`AGENTS.md`), skills and the `source-guard` hook|
-|`claude`|Claude Code settings, status line, keybindings and `source-guard` mod|
-|`codex`|Codex config and `source-guard` hook setup|
+Each package is named after what it configures. `claude` holds the Claude Code
+rules (`CLAUDE.md`), settings, skills, status line, keybindings and the
+`source-guard` mod.
 
 ## Add a config
 

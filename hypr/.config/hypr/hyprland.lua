@@ -11,7 +11,6 @@ local browser = "librewolf"
 local launcher = "rofi -no-default-config -show drun -show-icons"
 local runner = "rofi -show run"
 local games = "steam"
-local ai = "t3code"
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("waybar")
@@ -168,7 +167,6 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(launcher))
 hl.bind(secondMod .. " + Space", hl.dsp.exec_cmd(runner))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(games))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(ai))
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("swaylock"))

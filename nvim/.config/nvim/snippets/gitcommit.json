@@ -5,12 +5,5 @@
       "Co-Authored-By: Claude Code <noreply@anthropic.com>"
     ],
     "description": "Claude Trailer"
-  },
-  "git-codex-author": {
-    "prefix": "cxab",
-    "body": [
-      "Co-Authored-By: Codex <noreply@openai.com>"
-    ],
-    "description": "Codex Trailer"
   }
 }
