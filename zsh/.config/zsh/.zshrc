@@ -66,3 +66,6 @@ fi
 if [[ -f "$ZDOTDIR/local.zsh" ]]; then
   source "$ZDOTDIR/local.zsh"
 fi
+
+# export PATH for Doom Emacs
+export PATH="$HOME/.config/emacs/bin:$PATH"
